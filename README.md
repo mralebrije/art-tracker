@@ -51,7 +51,7 @@ Review application-prod.properties file in oder to configure MySQL DB
 ### Access JSONDoc page locally
 
 * Navigate to link
-hhttp://localhost:8080/mural-tracker/jsondoc-ui.html   
+http://localhost:8080/mural-tracker/jsondoc-ui.html   
 * Write **jsondoc** in text box  
 * Press **Get documentation** button  
 * Press **Servicios para Trip** link (located at left middle page) 
@@ -61,7 +61,7 @@ hhttp://localhost:8080/mural-tracker/jsondoc-ui.html
 ### Access JSONDoc page production
 
 * Navigate to link
-hhttp://localhost:8080/mural-tracker/jsondoc-ui.html  
+http://localhost:8080/mural-tracker/jsondoc-ui.html  
 * Write **jsondoc** in text box  
 * Press **Get documentation** button  
 * Press **Servicios para Mural** link (located at left middle page)  

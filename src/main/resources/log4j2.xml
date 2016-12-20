@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- docs https://logging.apache.org/log4j/2.x/manual/ -->
+<Configuration monitorInterval="60">
+    <Appenders>
+        <RollingFile name="DAILY"
+                     fileName="@log.dir@/@log.file@"
+                     filePattern="@log.dir@/@log.file@.%d.%i.log.gz"
+                     immediateFlush="true">
+            <PatternLayout>
+                <Pattern>mural-tracker %d %-5p (%F:%L) %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+        <Console name="STDOUT">
+            <PatternLayout>
+                <Pattern>mural-tracker %d %-5p (%F:%L) %m%n
+                </Pattern>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.sduran" level="INFO"></Logger>
+        <Logger name="org.springframework.boot" level="DEBUG"></Logger>
+        <Logger name="org" level="WARN"></Logger>
+        <Logger name="net" level="WARN"></Logger>
+        <Logger name="com" level="WARN"></Logger>
+        <Logger name="mx" level="WARN"></Logger>
+
+        <Root level="@log.level@">
+            <AppenderRef ref="DAILY"/>
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+    </Loggers>
+</Configuration>
