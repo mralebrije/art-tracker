@@ -7,7 +7,7 @@
                      filePattern="@log.dir@/@log.file@.%d.%i.log.gz"
                      immediateFlush="true">
             <PatternLayout>
-                <Pattern>mural-tracker %d %-5p (%F:%L) %m%n</Pattern>
+                <Pattern>art-tracker %d %-5p (%F:%L) %m%n</Pattern>
             </PatternLayout>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
@@ -17,7 +17,7 @@
         </RollingFile>
         <Console name="STDOUT">
             <PatternLayout>
-                <Pattern>mural-tracker %d %-5p (%F:%L) %m%n
+                <Pattern>art-tracker %d %-5p (%F:%L) %m%n
                 </Pattern>
             </PatternLayout>
         </Console>

@@ -8,11 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableJSONDoc
-public class MuralTrackerApplication {
+public class ArtTrackerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MuralTrackerApplication.class, args);
+		SpringApplication.run(ArtTrackerApplication.class, args);
 	}
 
-	private static final Logger LOG = LoggerFactory.getLogger(MuralTrackerApplication.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ArtTrackerApplication.class);
 }
