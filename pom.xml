@@ -61,6 +61,22 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-batch</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.jsondoc</groupId>
             <artifactId>spring-boot-starter-jsondoc</artifactId>
             <version>${jsondoc.version}</version>
@@ -104,7 +120,11 @@
             <scope>provided</scope>
         </dependency>
 
-
+        <dependency>
+            <groupId>com.socrata</groupId>
+            <artifactId>soda-api-java</artifactId>
+            <version>0.9.12</version>
+        </dependency>
     </dependencies>
 
     <build>

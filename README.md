@@ -1,5 +1,16 @@
 # ART TRACKER (Baltimore City)
 
+This data set shows the location of museums within the City of Baltimore. However, this is not a complete list. 
+Museums
+Baltimore Arts Organizations
+
+If you are using Maven, you can run the application using ./mvnw spring-boot:run. Or you can build the JAR file with ./mvnw clean package. Then you can run the JAR file:
+
+java -jar target/gs-batch-processing-0.1.0.jar
+
+Congratulations! You built a batch job that ingested data from a spreadsheet, processed it, and wrote it to a database.
+
+https://github.com/socrata/soda-java
 ## Set DB configuation
 
 ### Local configuration
