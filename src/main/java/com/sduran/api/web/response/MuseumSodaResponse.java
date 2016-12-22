@@ -18,6 +18,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString
 @Getter
+
 public class MuseumSodaResponse{
 
     public static final GenericType<List<MuseumSodaResponse>> LIST_TYPE = new GenericType<List<MuseumSodaResponse>>() {
