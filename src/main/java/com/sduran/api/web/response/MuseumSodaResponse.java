@@ -1,6 +1,6 @@
 package com.sduran.api.web.response;
 
-import com.sduran.api.web.resource.LocationResource;
+import com.sduran.api.web.resource.LocationBaseResource;
 import lombok.Getter;
 import lombok.ToString;
 import org.codehaus.jackson.annotate.JsonCreator;
@@ -28,7 +28,7 @@ public class MuseumSodaResponse{
     final String neighborhood;
     final int councilDistrict;
     final String policeDistrict;
-    final LocationResource locationResource;
+    final LocationBaseResource locationBaseResource;
 
     @JsonCreator
     public MuseumSodaResponse(@JsonProperty("name") String name,
@@ -36,13 +36,13 @@ public class MuseumSodaResponse{
                               @JsonProperty("neighborhood") String neighborhood,
                               @JsonProperty("councildistrict") int councilDistrict,
                               @JsonProperty("policedistrict") String policeDistrict,
-                              @JsonProperty("location_1") LocationResource locationResource) {
+                              @JsonProperty("location_1") LocationBaseResource locationBaseResource) {
         this.name = name;
         this.zipCode = zipCode;
         this.neighborhood = neighborhood;
         this.councilDistrict = councilDistrict;
         this.policeDistrict = policeDistrict;
-        this.locationResource = locationResource;
+        this.locationBaseResource = locationBaseResource;
     }
 
 }

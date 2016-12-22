@@ -21,7 +21,10 @@ public class OrganizationSodaResponseItemProcessor implements ItemProcessor<Orga
 
         if (organizationSodaResponse.getUrl() != null)
             organization.setUrl(organizationSodaResponse.getUrl().getUrl());
-
+        if (organizationSodaResponse.getLocation1() != null) {
+            organization.setLatitude(organizationSodaResponse.getLocation1().getLatitude());
+            organization.setLongitude(organizationSodaResponse.getLocation1().getLongitude());
+        }
 
         LOG.debug("{}, Converting row:({}) into entity:({})", method, organizationSodaResponse, organization);
         return organization;

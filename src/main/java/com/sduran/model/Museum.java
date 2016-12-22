@@ -19,7 +19,7 @@ import java.util.List;
 public class Museum implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(nullable = false)
     private int id;
 
@@ -39,5 +39,17 @@ public class Museum implements Serializable {
     private String address;
 
     public Museum() {
+
     }
+
+    public Museum(String name, String address, String neighborhood, int councilDistrict, String policeDistrict, String zipCode) {
+        this.name = name;
+        this.address = address;
+        this.neighborhood = neighborhood;
+        this.councilDistrict = councilDistrict;
+        this.policeDistrict = policeDistrict;
+        this.zipCode = zipCode;
+    }
+
+
 }

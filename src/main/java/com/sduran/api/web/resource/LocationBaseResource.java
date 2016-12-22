@@ -10,7 +10,12 @@ import org.codehaus.jackson.annotate.JsonProperty;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AddressResource {
-    public String address;
+public class LocationBaseResource {
+
+ @JsonProperty("human_address")
+    public AddressResource humanAddress;
+
+    @JsonProperty("needs_recording")
+    public Boolean needsRecording;
 }
 

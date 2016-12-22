@@ -9,9 +9,6 @@ import lombok.ToString;
 @Getter
 @Setter
 public class UrlResource {
-
-    @JsonProperty("url")
     public String url;
-
 }
 

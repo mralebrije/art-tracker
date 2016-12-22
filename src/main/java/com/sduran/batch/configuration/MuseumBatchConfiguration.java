@@ -108,7 +108,7 @@ public class MuseumBatchConfiguration {
 
     @Bean
     public Step step1Museum() {
-        return stepBuilderFactory.get("step1Museumm")
+        return stepBuilderFactory.get("step1Museum")
                 .<MuseumSodaResponse, Museum>chunk(1)
                 .reader(readerMuseum())
                 .processor(processorMuseum())

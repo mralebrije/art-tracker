@@ -17,7 +17,7 @@ import java.io.Serializable;
 public class Organization implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     private int id;
 
@@ -33,6 +33,23 @@ public class Organization implements Serializable {
 
     private String url;
 
+    private Double latitude;
+
+    private Double longitude;
+
     public Organization() {
     }
+
+    public Organization(String organization, String address, String cityState, String url, double latitude, double longitude, String zipCode) {
+
+        this.organization = organization;
+        this.address = address;
+        this.cityState = cityState;
+        this.url = url;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.zipCode = zipCode;
+    }
+
+
 }
