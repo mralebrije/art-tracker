@@ -18,9 +18,6 @@ import java.util.List;
 
 public class Museum implements Serializable {
 
-    public static final GenericType<List<Museum>> LIST_TYPE = new GenericType<List<Museum>>() {
-    };
-
     @Id
     @GeneratedValue
     @Column(nullable = false)
@@ -37,6 +34,10 @@ public class Museum implements Serializable {
     private int councilDistrict;
 
     @Column(name = "police_district")
-    private Location policeDistrict;
+    private String policeDistrict;
 
+    private String address;
+
+    public Museum() {
+    }
 }

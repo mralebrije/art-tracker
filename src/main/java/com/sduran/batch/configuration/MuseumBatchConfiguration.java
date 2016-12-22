@@ -1,7 +1,8 @@
 package com.sduran.batch.configuration;
 
+import com.sduran.api.web.response.MuseumSodaResponse;
 import com.sduran.batch.listener.JobCompletionNotificationListener;
-import com.sduran.batch.processor.MuseumItemProcessor;
+import com.sduran.batch.processor.MuseumSodaResponseItemProcessor;
 import com.sduran.model.Museum;
 import com.socrata.api.Soda2Consumer;
 import com.socrata.exceptions.SodaError;
@@ -9,6 +10,7 @@ import com.socrata.model.soql.SoqlQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -26,7 +28,7 @@ import java.util.List;
 
 @Configuration
 @EnableBatchProcessing
-public class BatchConfiguration {
+public class MuseumBatchConfiguration {
 
     @Value("${soda.api.endpoint.baltimore}")
     private String baltimoreEndpoint;
@@ -44,67 +46,76 @@ public class BatchConfiguration {
 
     // tag::readerwriterprocessor[]
     @Bean
-    public ListItemReader<Museum> reader() {
-        final String method = "reader";
+    public ListItemReader<MuseumSodaResponse> readerMuseum() {
+        final String method = "readerMuseum";
 
         Soda2Consumer consumer = Soda2Consumer.newConsumer(baltimoreEndpoint);
 
-        // To get a query results
-        List<Museum> museumList = null;
+        // To get query results
+        List<MuseumSodaResponse> museumList = null;
         try {
+
+            LOG.info("{}, resource: {}", method, museumsResource);
+
+
             museumList = consumer.query(museumsResource,
                     SoqlQuery.SELECT_ALL,
-                    Museum.LIST_TYPE);
+                    MuseumSodaResponse.LIST_TYPE);
         } catch (InterruptedException e) {
-            LOG.error("reader LongRunningQueryException: {}", e);
+            LOG.error("{}, LongRunningQueryException:{}", method, e);
         } catch (SodaError sodaError) {
-            LOG.error("reader SodaError: {}", sodaError);
+            LOG.error("{}, SodaError:{}", method, sodaError);
         }
 
-        ListItemReader<Museum> reader = null;
+        ListItemReader<MuseumSodaResponse> reader = null;
         if (museumList != null) {
-            LOG.info("{} Successful query Museum, elements foud:{}", method, museumList.size());
+            LOG.info("{}, Successful query Museum, elements found:{}", method, museumList.size());
             reader = new ListItemReader<>(museumList);
         } else {
-            LOG.info("{} Unsuccessful query Museum", method);
+            LOG.info("{}, Unsuccessful query Museum", method);
         }
         return reader;
     }
 
     @Bean
-    public MuseumItemProcessor processor() {
-        return new MuseumItemProcessor();
+    public MuseumSodaResponseItemProcessor processorMuseum() {
+        return new MuseumSodaResponseItemProcessor();
     }
 
     @Bean
-    public JpaItemWriter<Museum> writer() {
-        JpaItemWriter<Museum> writer = new JpaItemWriter<Museum>();
+    public JpaItemWriter<Museum> writerMuseum() {
+        JpaItemWriter<Museum> writer = new JpaItemWriter<>();
         writer.setEntityManagerFactory(entityManagerFactory);
         return writer;
     }
     // end::readerwriterprocessor[]
 
+    @Bean
+    public JobExecutionListener listenerMuseum() {
+        return new JobCompletionNotificationListener();
+    }
+
     // tag::jobstep[]
     @Bean
-    public Job importMuseumJob(JobCompletionNotificationListener listener) {
-        return jobBuilderFactory.get("importMuseumJob")
+    public Job importMuseumSodaResponseJob() {
+        return jobBuilderFactory.get("importMuseumSodaResponseJob")
                 .incrementer(new RunIdIncrementer())
-                .listener(listener)
-                .flow(step1())
+                .listener(listenerMuseum())
+                .flow(step1Museum())
                 .end()
                 .build();
     }
 
     @Bean
-    public Step step1() {
-        return stepBuilderFactory.get("step1")
-                .<Museum, Museum>chunk(1)
-                .reader(reader())
-                .processor(processor())
-                .writer(writer())
+    public Step step1Museum() {
+        return stepBuilderFactory.get("step1Museumm")
+                .<MuseumSodaResponse, Museum>chunk(1)
+                .reader(readerMuseum())
+                .processor(processorMuseum())
+                .writer(writerMuseum())
                 .build();
     }
     // end::jobstep[]
 
-    private static final Logger LOG = LoggerFactory.getLogger(BatchConfiguration.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MuseumBatchConfiguration.class);
 }

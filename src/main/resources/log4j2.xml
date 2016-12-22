@@ -24,7 +24,7 @@
     </Appenders>
     <Loggers>
         <Logger name="com.sduran" level="INFO"></Logger>
-        <Logger name="org.springframework.boot" level="DEBUG"></Logger>
+        <Logger name="org.springframework.boot" level="INFO"></Logger>
         <Logger name="org" level="WARN"></Logger>
         <Logger name="net" level="WARN"></Logger>
         <Logger name="com" level="WARN"></Logger>
