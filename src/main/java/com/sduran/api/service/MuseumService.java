@@ -3,6 +3,7 @@ package com.sduran.api.service;
 import com.sduran.api.repository.MuseumRepository;
 import com.sduran.api.service.exception.MuseumNotFoundException;
 import com.sduran.api.web.request.MuseumRequest;
+import com.sduran.api.web.resource.MuseumResource;
 import com.sduran.model.Museum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,11 +21,27 @@ public class MuseumService {
     private MuseumRepository museumRepository;
 
     @Transactional(readOnly = true)
-    public List<Museum> listAllMuseums() {
+    public List<MuseumResource> findAllMuseums() {
+
+        // List to storage each museum resource response
+        List<MuseumResource> museums = new ArrayList<>();
 
         List<Museum> museumList = museumRepository.findAll();
-        return museumList;
+
+        for (Museum item : museumList) {
+            MuseumResource museum = new MuseumResource();
+            populateMuseum(item, museum);
+            museums.add(museum);
+        }
+
+        return museums;
     }
+
+    @Transactional(readOnly = true)
+    public Long countAllMuseums() {
+        return museumRepository.count();
+    }
+
 
     @Transactional(readOnly = false)
     public void createOrUpdateMuseum(final MuseumRequest museumRequest) {
@@ -34,12 +52,7 @@ public class MuseumService {
             LOG.info("Museum to create: {}", museumRequest.getName());
         }
 
-        museum.setName(museumRequest.getName());
-        museum.setZipCode(museumRequest.getZipCode());
-        museum.setAddress(museumRequest.getAddress());
-        museum.setNeighborhood(museumRequest.getNeighborhood());
-        museum.setPoliceDistrict(museumRequest.getPoliceDistrict());
-        museum.setCouncilDistrict(museumRequest.getCouncilDistrict());
+        populateNewMuseum(museum,museumRequest);
 
         museumRepository.save(museum);
         LOG.info("Museum updated: {}", museumRequest.getName());
@@ -47,16 +60,16 @@ public class MuseumService {
     }
 
     @Transactional(readOnly = false)
-    public void deleteMuseum(final String museumName) throws MuseumNotFoundException {
+    public void deleteMuseum(final String id) throws MuseumNotFoundException {
 
-        Museum museum = museumRepository.findByName(museumName);
+        Museum museum = museumRepository.findById(Integer.valueOf(id));
         if (museum == null) {
-            LOG.warn("Museum not exists: {}", museumName);
-            throw new MuseumNotFoundException("Museum not exists: " + museumName);
+            LOG.warn("Museum not exists, for id:{}", id);
+            throw new MuseumNotFoundException("Museum not exists, for id: " + id);
         }
 
         museumRepository.delete(museum);
-        LOG.info("Museum deleted: {}", museum.getName());
+        LOG.info("Museum deleted:{}", museum.getName());
     }
 
     @Transactional(readOnly = true)
@@ -66,6 +79,24 @@ public class MuseumService {
         return councilList;
     }
 
+    private void populateMuseum(Museum item, MuseumResource museum) {
+
+        museum.setName(item.getName());
+        museum.setNeighborhood(item.getNeighborhood());
+        museum.setCouncilDistrict(item.getCouncilDistrict());
+        museum.setPoliceDistrict(item.getPoliceDistrict());
+        museum.setAddress(item.getAddress());
+        museum.setZip(item.getZipCode());
+    }
+
+    private void populateNewMuseum(Museum museum, MuseumRequest museumRequest) {
+        museum.setName(museumRequest.getName());
+        museum.setZipCode(museumRequest.getZipCode());
+        museum.setAddress(museumRequest.getAddress());
+        museum.setNeighborhood(museumRequest.getNeighborhood());
+        museum.setPoliceDistrict(museumRequest.getPoliceDistrict());
+        museum.setCouncilDistrict(museumRequest.getCouncilDistrict());
+    }
 
     private static final Logger LOG = LoggerFactory.getLogger(MuseumService.class);
 

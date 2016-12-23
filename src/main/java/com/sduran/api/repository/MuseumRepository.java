@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface MuseumRepository extends JpaRepository<Museum, Long> {
 
+    Museum findById(int id);
     Museum findByName(String name);
 
     @Query(value = "select DISTINCT police_district from museum;", nativeQuery = true)

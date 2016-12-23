@@ -11,6 +11,7 @@ import org.jsondoc.core.annotation.ApiObjectField;
 import org.jsondoc.core.annotation.ApiVersion;
 import org.jsondoc.core.pojo.ApiVisibility;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Getter
@@ -36,8 +37,8 @@ public class MuseumRequest implements Serializable {
 
     @ApiObjectField(name = "council_district", description = "Museum council district number", required = true)
     @JsonProperty("council_district")
-    @NotEmpty
-    private int councilDistrict;
+    @NotNull
+    private Integer councilDistrict;
 
     @ApiObjectField(name = "police_district", description = "Museum police district", required = true)
     @JsonProperty("police_district")

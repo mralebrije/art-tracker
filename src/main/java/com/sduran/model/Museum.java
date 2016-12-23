@@ -31,7 +31,7 @@ public class Museum implements Serializable {
     private String neighborhood;
 
     @Column(name = "council_district")
-    private int councilDistrict;
+    private Integer councilDistrict;
 
     @Column(name = "police_district")
     private String policeDistrict;
@@ -42,7 +42,7 @@ public class Museum implements Serializable {
 
     }
 
-    public Museum(String name, String address, String neighborhood, int councilDistrict, String policeDistrict, String zipCode) {
+    public Museum(String name, String address, String neighborhood, Integer councilDistrict, String policeDistrict, String zipCode) {
         this.name = name;
         this.address = address;
         this.neighborhood = neighborhood;
