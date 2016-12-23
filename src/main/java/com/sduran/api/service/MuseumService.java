@@ -73,10 +73,15 @@ public class MuseumService {
     }
 
     @Transactional(readOnly = true)
-    public List<String> listAllCouncil() {
+    public List<String> findAllDistricts() {
 
         List<String> councilList = museumRepository.findDistinctByPoliceDistrict();
         return councilList;
+    }
+
+    @Transactional(readOnly = true)
+    public Long countAllDistricts() {
+        return museumRepository.countDistinctByPoliceDistrict();
     }
 
     private void populateMuseum(Museum item, MuseumResource museum) {

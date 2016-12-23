@@ -1,0 +1,86 @@
+.table-container {
+	padding: 20px;
+	font-size: 85%;
+}
+
+.council-filter {
+	font-size: 85%;
+	width: 90%;
+}
+
+.table-container {
+	padding: 20px;
+}
+
+ .navbar{
+    padding: 15px;
+    background-color: #cc99ff !important;
+    margin-bottom: 0;
+}
+
+.white-text{
+      color: white !important;
+    }
+.white-icon{
+      color: white !important;
+    }
+.white-icon:hover{
+     color: #FF570A !important;
+};
+
+
+#refreshBtn {
+	position: absolute;
+	right: 145px;
+}
+
+#genericBtn {
+	position: absolute;
+	top: 40px;
+	right: 20px;
+	top: 40px;
+}
+
+.btn-excel {
+	position: absolute;
+	right: 100px;
+	top: 40px;
+	padding: 1px;
+}
+
+.ic-excel {
+	width: 30px;
+	height: 30px;
+}
+
+.text-filter {
+	width: 100px;
+}
+
+.backBlue {
+	padding: 15px;
+	font-size: 85%;
+	background: rgba(204, 136,1);
+}
+
+/**
+ * Extra large button extensions. Extends `.btn`.
+ */
+.btn-xlarge {
+    padding: 14px 24px;
+    font-size: 18px;
+    line-height: normal;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
+    }
+
+
+th {
+	text-align: center;
+}
+
+h2 {
+    color: white;
+    font-weight: bold;
+}

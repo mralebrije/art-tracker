@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html ng-app="artTrackerApp">
+
+<head>
+    <title></title>
+    <meta charset='utf-8'></meta>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+    <link rel="stylesheet"
+          th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"/>
+    <script type="text/javascript"
+            th:src="@{//cdn.jsdelivr.net/jquery/1/jquery.min.js}"></script>
+    <script type="text/javascript"
+            th:src="@{//cdn.jsdelivr.net/momentjs/latest/moment.min.js}"></script>
+    <script th:src="@{https://code.jquery.com/jquery-3.1.1.min.js}"></script>
+    <script
+            th:src="@{https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js}"></script>
+    <script th:src="@{js/app.js}"></script>
+    <link rel="stylesheet" th:href="@{css/style.css}"/>
+</head>
+
+<body>
+<div ng-controller="MuseumController">
+    <div id="MuseumDiv">
+        <img th:src="@{images/img_baltimore_background.JPG}" alt="Baltimore logo"/>
+
+        <header>
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-header">
+                        <h3 class = "white-text">MUSEUMS AND ART ORGANIZATIONS<i class="fa fa-university fa-3x white-icon"></i></h3>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="table-container">
+
+            <form role="form" ng-submit="search()">
+                <button type="submit"  class="btn btn-xlarge btn-info" style="float: right;" ng-disabled="isBtnDisabled()">ADD MUSEUM</button>
+            </form>
+
+            <table class="table table-bordered table-striped export-table">
+                <thead>
+                <tr>
+                    <th><input class="text-filter" ng-model="search.museum"/><br/>Museum</th>
+                    <th><input class="text-filter" ng-model="search.postal_code"/><br/>Postal Code (ZIP)</th>
+                    <th><input class="text-filter" ng-model="search.neighborhood"/><br/>Neighborhood</th>
+                    <th><input class="text-filter" ng-model="search.council_district"/><br/>Council District</th>
+                    <th>Police District</th>
+                    <th>Address</th>
+                    <th><select class="form-control district-filter"
+                                data-ng-model="data.districtSelect"
+                                data-ng-options="district.police_district for district in districts"
+                                data-ng-change="setFilter()">
+                        <option value="">ALL</option>
+                    </select></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr
+                        ng-repeat="museum in museums | filter:search:strict | filter:selectedDistrict">
+                    <td>{{ museum.name }}</td>
+                    <td>{{ museum.zip_code }}</td>
+                    <td>{{ museum.neighborhood }}</td>
+                    <td>{{ museum.council_district }}</td>
+                    <td>{{ museum.police_district }}</td>
+                    <td>{{ museum.address }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <h4 ng-show="museums.length === 0">0 Museums</h4>
+        </div>
+    </div>
+</div>
+</body>
+<footer>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-footer">
+                <div class = "col-md-7 col-md-offset-1">
+                    <h4 class = "white-text">Developer: Sergio Daniel Durán  - Email: serch_sddm@outlook.com - Repository: <a href = "https://bitbucket.org/sduraniwa/art-tracker"><i class="fa fa-github fa-3x white-icon"></i></a></h4>
+                </div>
+                </div>
+        </div>
+    </nav>
+
+</footer>
+</html>

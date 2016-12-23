@@ -5,6 +5,7 @@ import com.sduran.api.service.MuseumService;
 import com.sduran.api.service.exception.MuseumNotFoundException;
 import com.sduran.api.web.request.MuseumRequest;
 import com.sduran.api.web.response.BaseApiFormResponse;
+import com.sduran.api.web.response.DistrictsSearchResponse;
 import com.sduran.api.web.response.MuseumsSearchResponse;
 import com.sduran.api.web.validator.MuseumValidator;
 import org.jsondoc.core.annotation.*;
@@ -74,6 +75,19 @@ public class MuseumRestController extends BaseController {
             return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @ApiMethod(path = "/museum/district", verb = ApiVerb.GET, description = "Search all council districts", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/district",method = RequestMethod.GET)
+    public ResponseEntity<DistrictsSearchResponse> getCouncilDistricts() {
+
+        DistrictsSearchResponse districtsSearchResponse = new DistrictsSearchResponse();
+
+        districtsSearchResponse.setDistricts(museumService.findAllDistricts());
+        districtsSearchResponse.setTotal(museumService.countAllDistricts());
+
+        return new ResponseEntity<DistrictsSearchResponse>(districtsSearchResponse, HttpStatus.OK);
+    }
+
 
     private static final Logger LOG = LoggerFactory.getLogger(MuseumRestController.class);
 }
