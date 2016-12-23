@@ -6,9 +6,26 @@
  
 ## Why Art Tracker?
 
- **1. First chance:** _Are you an Art Lover? ... do you live in Baltimore City?... do you like Museums and Art Organizations?_ You have to explore this beautiful set of data about art locations in Baltimore.
- **2. Second chance:** Mmmm, let´s try again, _are you a software developer?... are you looking for a Java Full Stack Project example?... RESTful, services, controllers, ORM, angular, spring, hibernate, loombok, mysql, h2 are words that you have in mind?_ Perfect you can explore this code and love it or hate it (as well as me these nights). 
- **3. Third chance:** Ok ok, I have to be very careful selecting my next words in order to keep your attention in my code so... *are you a Talent hunter?...are you looking for a committed and passionate worker in tour team?* **I introduce myself with this code for you like first step, hoping to make great things together!**
+ **1. First chance:** 
+ 
+ _Are you an Art Lover?..._ 
+ _Do you live in Baltimore City?..._ 
+ _Do you like Museums and Art Organizations?_ 
+  
+ You have to explore this beautiful set of data about art locations in Baltimore.
+ 
+ **2. Second chance ~~(Mmmm, let´s try again)~~:** 
+ _Are you a software developer?..._ 
+ _Are you looking for a Java Full Stack Project example?..._
+ _RESTful, services, controllers, ORM, angular, spring, hibernate, loombok, mysql, h2 are words that you have in mind?_ 
+  
+  Perfect you can explore this code and love it or hate it ~~(as well as me these nights)~~. 
+  
+ **3. Third chance ~~(last chance,I have to be really careful selecting my next words to keep your attention in my code)~~:**
+ _Are you a Talent hunter?..._
+ _Are you looking for a committed and passionate worker in tour team?_  
+ 
+ I introduce myself with this code for you like first step, hoping to make **great things** together!
 
 ## Data sets
 
@@ -19,12 +36,12 @@
  
 ## Entire development stack
  
- * Java
- * Angular, Spring, Spring boot, Hibernate
- * MySQL, H2 
- * Maven 
- * ORM, MVC
- * Socrata SODA API, Google Maps API 
+ * [Java](https://www.java.com/)
+ * [Angular](https://angularjs.org), [Spring](http://docs.spring.io/), [Spring boot](http://docs.spring.io/spring-boot/), [Hibernate](http://projects.spring.io/spring-data/) 
+ * [MySQL](https://www.mysql.com/), [H2](www.h2database.com)
+ * [Maven](https://maven.apache.org/)
+ * [ORM](hibernate.org/orm/what-is-an-orm/), [MVC](https://www.tutorialspoint.com/mvc.../)
+ * [Socrata SODA API](https://github.com/socrata/soda-java/), [Google Maps API (https://developers.google.com/maps/)]
 
 
 ## How to run?
