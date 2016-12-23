@@ -43,7 +43,7 @@
  * [MySQL](https://www.mysql.com/), [H2](www.h2database.com)
  * [Maven](https://maven.apache.org/)
  * [ORM](hibernate.org/orm/what-is-an-orm/), [MVC](https://www.tutorialspoint.com/mvc.../)
- * [Socrata SODA API](https://github.com/socrata/soda-java/), [Google Maps API (https://developers.google.com/maps/)]
+ * [Socrata SODA API](https://github.com/socrata/soda-java/), [Google Maps API](https://developers.google.com/maps/)
 
 
 ## How to run?
