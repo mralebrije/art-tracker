@@ -4,11 +4,11 @@
 	artTrackerApp.factory('ApiFactory', function($http) {
 		return {
 			getMuseums : function() {
-				return $http.get('/museum', {
+				return $http.get('/art-tracker/museum', {
 				});
 			},
 			getDistricts : function() {
-				return $http.get('/museum/district', {
+				return $http.get('/art-tracker/museum/district', {
 				});
 			}
 		}
@@ -24,7 +24,7 @@
 		// variables
 		angular.extend($scope, {
 			museums : [],
-			police : [],
+			districts : [],
 			selectedDistrict : undefined,
 			data : {
 				districtSelect : ""
@@ -67,8 +67,8 @@
 			$scope.selectedDistrict = "";
 			if ($scope.data.districtSelect != null) {
 				angular.forEach($scope.districts, function(element) {
-					if ($scope.data.districtSelect.police_district === element.police_district) {
-						$scope.selectedDistrict = element.police_district;
+					if ($scope.data.districtSelect.districtItem === element.districtItem) {
+						$scope.selectedDistrict = element.districtItem;
 						return;
 					}
 				})

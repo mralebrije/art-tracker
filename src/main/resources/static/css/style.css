@@ -3,7 +3,7 @@
 	font-size: 85%;
 }
 
-.council-filter {
+.district-filter {
 	font-size: 85%;
 	width: 90%;
 }
@@ -20,37 +20,21 @@
 
 .white-text{
       color: white !important;
-    }
+      font-weight: bold;
+}
+
 .white-icon{
       color: white !important;
-    }
+}
+
 .white-icon:hover{
      color: #FF570A !important;
-};
+}
 
 
 #refreshBtn {
 	position: absolute;
 	right: 145px;
-}
-
-#genericBtn {
-	position: absolute;
-	top: 40px;
-	right: 20px;
-	top: 40px;
-}
-
-.btn-excel {
-	position: absolute;
-	right: 100px;
-	top: 40px;
-	padding: 1px;
-}
-
-.ic-excel {
-	width: 30px;
-	height: 30px;
 }
 
 .text-filter {
@@ -74,7 +58,6 @@
        -moz-border-radius: 6px;
             border-radius: 6px;
     }
-
 
 th {
 	text-align: center;
