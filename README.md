@@ -15,6 +15,7 @@
  You have to explore this beautiful set of data about art locations in Baltimore.
  
  **2. Second chance ~~(Mmmm, let´s try again)~~:** 
+ 
  _Are you a software developer?..._ 
  _Are you looking for a Java Full Stack Project example?..._
  _RESTful, services, controllers, ORM, angular, spring, hibernate, loombok, mysql, h2 are words that you have in mind?_ 
@@ -22,6 +23,7 @@
   Perfect you can explore this code and love it or hate it ~~(as well as me these nights)~~. 
   
  **3. Third chance ~~(last chance,I have to be really careful selecting my next words to keep your attention in my code)~~:**
+ 
  _Are you a Talent hunter?..._
  _Are you looking for a committed and passionate worker in tour team?_  
  
