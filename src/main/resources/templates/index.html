@@ -41,7 +41,7 @@
 
             <form role="form" ng-submit="search()">
                 <button type="submit"  class="btn btn-xlarge btn-info" style="float: right;" ng-disabled="isBtnDisabled()">ADD MUSEUM</button>
-            </form><br/>
+            </form><br/><br/>
 
             <table class="table table-bordered table-striped export-table">
                 <thead>
@@ -50,14 +50,13 @@
                     <th><input class="text-filter" ng-model="search.zip"/><br/>Postal Code (ZIP)</th>
                     <th><input class="text-filter" ng-model="search.neighborhood"/><br/>Neighborhood</th>
                     <th><input class="text-filter" ng-model="search.council_district"/><br/>Council District</th>
-                    <th>Police District</th>
-                    <th>Address</th>
                     <th><select class="form-control district-filter"
                                 data-ng-model="data.districtSelect"
                                 data-ng-options="districtItem for districtItem in districts"
                                 data-ng-change="setFilter()">
                         <option value="">ALL</option>
-                    </select></th>
+                    </select><br/>Police District</th>
+                    <th>Address</th>
                 </tr>
                 </thead>
                 <tbody>

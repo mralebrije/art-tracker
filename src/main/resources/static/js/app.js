@@ -67,8 +67,8 @@
 			$scope.selectedDistrict = "";
 			if ($scope.data.districtSelect != null) {
 				angular.forEach($scope.districts, function(element) {
-					if ($scope.data.districtSelect.districtItem === element.districtItem) {
-						$scope.selectedDistrict = element.districtItem;
+					if ($scope.data.districtSelect == element) {
+						$scope.selectedDistrict = element;
 						return;
 					}
 				})
