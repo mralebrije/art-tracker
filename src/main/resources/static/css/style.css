@@ -23,6 +23,11 @@
       font-weight: bold;
 }
 
+.myGrid {
+      width: 1200px;
+      height: 500px;
+}
+
 .white-icon{
       color: white !important;
 }

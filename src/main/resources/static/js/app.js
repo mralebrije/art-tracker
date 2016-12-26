@@ -1,5 +1,5 @@
 (function() {
-	var artTrackerApp = angular.module('artTrackerApp', []);
+	var artTrackerApp = angular.module('artTrackerApp', ['ngTouch', 'ui.grid']);
 
 	artTrackerApp.factory('ApiFactory', function($http) {
 		return {
@@ -19,6 +19,7 @@
 
 	function MuseumController($scope, $interval, ApiFactory) {
 
+
 		var reloadInterval = 1200000;
 
 		// variables
@@ -29,6 +30,26 @@
 			data : {
 				districtSelect : ""
 			},
+			myData : [
+                        {
+                            "firstName": "Cox",
+                            "lastName": "Carney",
+                            "company": "Enormo",
+                            "employed": true
+                        },
+                        {
+                            "firstName": "Lorraine",
+                            "lastName": "Wise",
+                            "company": "Comveyer",
+                            "employed": false
+                        },
+                        {
+                            "firstName": "Nancy",
+                            "lastName": "Waters",
+                            "company": "Fuelton",
+                            "employed": false
+                        }
+                    ],
 			error : false
 		});
 
