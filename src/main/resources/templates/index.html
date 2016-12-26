@@ -45,36 +45,9 @@
                 <button type="submit"  class="btn btn-xlarge btn-info" style="float: right;" ng-disabled="isBtnDisabled()">ADD MUSEUM</button>
             </form><br/><br/><br/>
 
-            <div id="grid1" ui-grid="{ data: museums }" class="grid"></div><br/><br/><br/>
+            <div id="gridMuseum" ui-grid="gridOptions" ui-grid-selection="true"></div><br/><br/><br/>
 
-            <table class="table table-bordered table-striped export-table">
-                <thead>
-                <tr>
-                    <th><input class="text-filter" ng-model="search.name"/><br/>Museum</th>
-                    <th><input class="text-filter" ng-model="search.zip"/><br/>Postal Code (ZIP)</th>
-                    <th><input class="text-filter" ng-model="search.neighborhood"/><br/>Neighborhood</th>
-                    <th><input class="text-filter" ng-model="search.council_district"/><br/>Council District</th>
-                    <th><select class="form-control district-filter"
-                                data-ng-model="data.districtSelect"
-                                data-ng-options="districtItem for districtItem in districts"
-                                data-ng-change="setFilter()">
-                        <option value="">ALL</option>
-                    </select><br/>Police District</th>
-                    <th>Address</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr
-                    ng-repeat="museum in museums | filter:search:strict | filter:selectedDistrict">
-                    <td>{{ museum.name }}</td>
-                    <td>{{ museum.zip }}</td>
-                    <td>{{ museum.neighborhood }}</td>
-                    <td>{{ museum.council_district }}</td>
-                    <td>{{ museum.police_district }}</td>
-                    <td>{{ museum.address }}</td>
-                </tr>
-                </tbody>
-            </table>
+
             <h4 ng-show="museums.length === 0">0 Museums</h4>
         </div>
 
