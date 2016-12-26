@@ -1,15 +1,9 @@
-.table-container {
+.body-container {
 	padding: 20px;
 	font-size: 85%;
 }
 
-.district-filter {
-	font-size: 85%;
-	width: 90%;
-}
-
 .table-container {
-	padding: 20px;
 }
 
  .navbar{
@@ -25,7 +19,7 @@
 
 .myGrid {
       width: 1200px;
-      height: 500px;
+      height: 600px;
 }
 
 .white-icon{
@@ -36,32 +30,16 @@
      color: #FF570A !important;
 }
 
-
-#refreshBtn {
-	position: absolute;
-	right: 145px;
-}
-
-.text-filter {
-	width: 100px;
-}
-
-.backBlue {
-	padding: 15px;
-	font-size: 85%;
-	background: rgba(204, 136,1);
-}
-
 /**
  * Extra large button extensions. Extends `.btn`.
  */
-.btn-xlarge {
+.btn-customized {
     padding: 14px 24px;
-    font-size: 18px;
+    font-size: 14px;
     line-height: normal;
-    -webkit-border-radius: 6px;
-       -moz-border-radius: 6px;
-            border-radius: 6px;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
     }
 
 th {
@@ -72,3 +50,5 @@ h2 {
     color: white;
     font-weight: bold;
 }
+
+.purple { color: black;  background-color: #E6E6FA !important; }
