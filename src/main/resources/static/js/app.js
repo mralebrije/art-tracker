@@ -86,7 +86,7 @@
                 openMuseumModel(grid,row);
         }
 
-        function openMuseumModel(){
+        function openMuseumModel(grid,row){
             $modal.open({
                                     templateUrl: 'edit',
                                     controller: ['$modalInstance', 'grid', 'row', RowEditController],
