@@ -13,8 +13,10 @@
 		}
 	});
 
-    artTrackerApp.controller('RowEditController', RowEditController);
-
+    artTrackerApp.controller('RowEditController', [
+                RowEditController ]);
+    artTrackerApp.controller('RowAddController', [
+                RowAddController ]);
     artTrackerApp.controller('MuseumController', [ '$scope', '$interval','ApiFactory', '$modal',
     			MuseumController ]);
 
@@ -54,8 +56,7 @@
 			reload : reload,
 			addMuseum : addMuseum,
 			deleteMuseum : deleteMuseum,
-            editMuseum : editMuseum,
-            openMuseumModel : openMuseumModel
+            editMuseum : editMuseum
 		});
 
 		function retrieveMuseums() {
@@ -68,35 +69,40 @@
 		}
 
 		function addMuseum() {
+            var modalInstance = $modal.open({
+                templateUrl: 'add',
+                controller: ['ApiFactory', '$modalInstance',  RowAddController],
+                controllerAs: 'vm',
+                resolve: {
+                                    ApiFactory: function () {return ApiFactory}
+                                }
+                });
 
-            var parameter = JSON.stringify({name:"user", zip_code:"user", neighborhood:"user",
-            council_district:1, police_district:"user", address:"user"});
+                  modalInstance.result.then(function (entity) {
+                                $scope.gridOptions.data.push(entity);
+                               alert("Museum added successfully");
+                  });
 
-        			ApiFactory.postMuseum(parameter).then(
-        					function(response) {
-
-        						$scope.gridOptions.data.push(parameter);
-
-        					}, function(error) {
-        						handleApiError(error);
-        					});
         }
 
         function editMuseum(grid, row) {
-                openMuseumModel(grid,row);
+            var modalInstance =  $modal.open({
+                templateUrl: 'edit',
+                controller: ['ApiFactory', '$modalInstance', 'grid', 'row', RowEditController],
+                controllerAs: 'vm',
+                resolve: {
+                    grid: function () { return grid; },
+                    row: function () { return row; },
+                    ApiFactory: function () {return ApiFactory}
+                }
+             });
+
+             modalInstance.result.then(function (entity) {
+                alert("Museum edited successfully");
+             });
+
         }
 
-        function openMuseumModel(grid,row){
-            $modal.open({
-                                    templateUrl: 'edit',
-                                    controller: ['$modalInstance', 'grid', 'row', RowEditController],
-                                    controllerAs: 'vm',
-                                    resolve: {
-                                        grid: function () { return grid; },
-                                        row: function () { return row; }
-                                    }
-                                  });
-        }
 
         function deleteMuseum(id) {
             alert(id);
@@ -126,38 +132,79 @@
 	}
 
 
-    function RowEditController($modalInstance, grid, row) {
+    function RowEditController(ApiFactory, $modalInstance, grid, row) {
           var vm = this;
-
           vm.schema = {
                           type: "object",
                           properties: {
                              name: { type: 'string', title: 'Name' },
-                             zip: { type: 'string', title: 'Zip' },
+                             zip_code: { type: 'string', title: 'Zip' },
                              neighborhood: { type: 'string', title: 'Neighborhood' },
                              council_district: { type: 'integer', title: 'Council District' },
                              police_district: { type: 'string', title: 'Police District' },
                              address: { type: 'string', title: 'Address' }
                           }
           };
-
           vm.form = [
                           'name',
-                          'zip',
+                          'zip_code',
                           'neighborhood',
                           'council_district',
                           'police_district',
                           'address'
           ];
-
           vm.model  = angular.copy(row.entity);
-
           vm.save = save;
 
           function save() {
-            // Copy row values over
-            row.entity = angular.extend(row.entity, vm.model);
-            $modalInstance.close(row.entity);
+
+            var parameter = JSON.stringify({name: vm.model.name, zip_code:vm.model.zip_code, neighborhood:vm.model.neighborhood,
+                    council_district:vm.model.council_district, police_district:vm.model.police_district, address:vm.model.address});
+
+            ApiFactory.postMuseum(parameter).then(
+                                function(response) {
+                                      row.entity = angular.extend(row.entity, vm.model);
+                                      $modalInstance.close(vm.model);
+                                }, function(error) {
+                                    alert("error");
+            });
           }
     }
+
+    function RowAddController( ApiFactory, $modalInstance) {
+              var vm = this;
+              vm.schema = {
+                              type: "object",
+                              properties: {
+                                 name: { type: 'string', title: 'Name' },
+                                 zip_code: { type: 'string', title: 'Zip' },
+                                 neighborhood: { type: 'string', title: 'Neighborhood' },
+                                 council_district: { type: 'integer', title: 'Council District' },
+                                 police_district: { type: 'string', title: 'Police District' },
+                                 address: { type: 'string', title: 'Address' }
+                              }
+              };
+              vm.form = [
+                              'name',
+                              'zip_code',
+                              'neighborhood',
+                              'council_district',
+                              'police_district',
+                              'address'
+              ];
+              vm.model  = {};
+              vm.save = save;
+
+              function save() {
+                var parameter = JSON.stringify({name: vm.model.name, zip_code:vm.model.zip_code, neighborhood:vm.model.neighborhood,
+                    council_district:vm.model.council_district, police_district:vm.model.police_district, address:vm.model.address});
+
+                ApiFactory.postMuseum(parameter).then(
+                    function(response) {
+                         $modalInstance.close( vm.model);
+                    }, function(error) {
+                        alert("error");
+                    });
+              }
+        }
 })();

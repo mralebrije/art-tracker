@@ -18,7 +18,12 @@ public class StaticController extends BaseController {
 
 	@RequestMapping("/edit")
 	public String edit() {
-		return "museum-modal";
+		return "museum-edit-modal";
+	}
+
+	@RequestMapping("/add")
+	public String add() {
+		return "museum-add-modal";
 	}
 
 }
