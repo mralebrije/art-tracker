@@ -86,6 +86,7 @@ public class MuseumService {
 
     private void populateMuseum(Museum item, MuseumResource museum) {
 
+        museum.setId(item.getId());
         museum.setName(item.getName());
         museum.setNeighborhood(item.getNeighborhood());
         museum.setCouncilDistrict(item.getCouncilDistrict());

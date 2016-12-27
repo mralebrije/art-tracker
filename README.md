@@ -44,7 +44,7 @@
  * [Maven](https://maven.apache.org/)
  * [ORM](hibernate.org/orm/what-is-an-orm/), [MVC](https://www.tutorialspoint.com/mvc.../)
  * [Socrata SODA API](https://github.com/socrata/soda-java/), [Google Maps API](https://developers.google.com/maps/)
- * [ui-grid](http://ui-grid.info/docs/)
+ * [ui-grid](http://ui-grid.info/docs/), [angular schema form](https://github.com/json-schema-form/angular-schema-form)
 
 
 ## How to run?

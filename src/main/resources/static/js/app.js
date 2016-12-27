@@ -1,5 +1,5 @@
 (function() {
-	var artTrackerApp = angular.module('artTrackerApp', ['ngTouch', 'ui.grid', 'ui.grid.selection', 'ui.grid.pagination']);
+	var artTrackerApp = angular.module('artTrackerApp', ['ngTouch', 'ui.grid', 'ui.grid.selection', 'ui.grid.pagination', 'ui.grid.edit', 'ui.bootstrap', 'schemaForm']);
 
 	artTrackerApp.factory('ApiFactory', function($http) {
 		return {
@@ -13,26 +13,29 @@
 		}
 	});
 
-	artTrackerApp.controller('MuseumController', [ '$scope', '$interval','ApiFactory',
-			MuseumController ]);
+    artTrackerApp.controller('RowEditController', RowEditController);
 
+    artTrackerApp.controller('MuseumController', [ '$scope', '$interval','ApiFactory', '$modal',
+    			MuseumController ]);
 
-	function MuseumController($scope, $interval, ApiFactory) {
+	function MuseumController($scope, $interval, ApiFactory, $modal) {
 		var reloadInterval = 1200000;
 
 		// VARIABLES
 		angular.extend($scope, {
 			gridOptions : {
 			    columnDefs: [
+			        { name:'Id', field: 'id', visible:false},
                     { name:'Name', field: 'name', headerCellClass: 'purple'},
                     { name:'Postal Code', field: 'zip' },
                     { name:'Neighborhood', field: 'neighborhood' },
                     { name:'Council District', field: 'council_district'},
                     { name:'Police District', field: 'police_district'},
                     { name:'Address', field: 'address'},
-                    { name: 'Actions', enableFiltering: false, enableSorting: false,
-                      cellTemplate:'<button   type="button" class="btn btn-warning btn-customized" ng-click="grid.appScope.editMuseum()">Edit</button> <button   type="button" class="btn btn-danger btn-customized" ng-click="grid.appScope.deleteMuseum()">Delete</button>'  }
+                    { name: 'Actions', editable:false, enableFiltering: false, enableSorting: false,
+                      cellTemplate:'action'  }
 			    ],
+
 			    paginationPageSize: 10,
                 enableSorting: true,
                 multiSelect: true,
@@ -50,8 +53,9 @@
 			retrieveMuseums : retrieveMuseums,
 			reload : reload,
 			addMuseum : addMuseum,
-			editMuseum : editMuseum,
-			deleteMuseum : deleteMuseum
+			deleteMuseum : deleteMuseum,
+            editMuseum : editMuseum,
+            openMuseumModel : openMuseumModel
 		});
 
 		function retrieveMuseums() {
@@ -62,7 +66,6 @@
 						handleApiError(error);
 					});
 		}
-
 
 		function addMuseum() {
 
@@ -79,13 +82,24 @@
         					});
         }
 
-        function editMuseum() {
-            alert("wwwww");
-
+        function editMuseum(grid, row) {
+                openMuseumModel(grid,row);
         }
 
-        function deleteMuseum() {
-            alert("deleteMuseum");
+        function openMuseumModel(){
+            $modal.open({
+                                    templateUrl: 'edit',
+                                    controller: ['$modalInstance', 'grid', 'row', RowEditController],
+                                    controllerAs: 'vm',
+                                    resolve: {
+                                        grid: function () { return grid; },
+                                        row: function () { return row; }
+                                    }
+                                  });
+        }
+
+        function deleteMuseum(id) {
+            alert(id);
 		}
 
 		function handleApiError(error) {
@@ -110,4 +124,40 @@
 		}
 		init();
 	}
+
+
+    function RowEditController($modalInstance, grid, row) {
+          var vm = this;
+
+          vm.schema = {
+                          type: "object",
+                          properties: {
+                             name: { type: 'string', title: 'Name' },
+                             zip: { type: 'string', title: 'Zip' },
+                             neighborhood: { type: 'string', title: 'Neighborhood' },
+                             council_district: { type: 'integer', title: 'Council District' },
+                             police_district: { type: 'string', title: 'Police District' },
+                             address: { type: 'string', title: 'Address' }
+                          }
+          };
+
+          vm.form = [
+                          'name',
+                          'zip',
+                          'neighborhood',
+                          'council_district',
+                          'police_district',
+                          'address'
+          ];
+
+          vm.model  = angular.copy(row.entity);
+
+          vm.save = save;
+
+          function save() {
+            // Copy row values over
+            row.entity = angular.extend(row.entity, vm.model);
+            $modalInstance.close(row.entity);
+          }
+    }
 })();

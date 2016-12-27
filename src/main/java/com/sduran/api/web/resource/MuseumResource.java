@@ -21,6 +21,8 @@ import java.math.BigDecimal;
 @SuppressWarnings("serial")
 public class MuseumResource implements Serializable {
 
+    @ApiObjectField(name = "id", description = "Museum id")
+    private Integer id;
     @ApiObjectField(name = "name", description = "Museum name")
     private String name;
     @ApiObjectField(name = "zip", description = "Museum zip code")

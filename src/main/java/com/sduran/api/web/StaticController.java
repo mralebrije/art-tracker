@@ -10,4 +10,15 @@ public class StaticController extends BaseController {
 	public String index() {
 		return "index";
 	}
+
+	@RequestMapping("/action")
+	public String action() {
+		return "action-buttons";
+	}
+
+	@RequestMapping("/edit")
+	public String edit() {
+		return "museum-modal";
+	}
+
 }
