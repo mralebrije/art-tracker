@@ -7,15 +7,15 @@
 				return $http.get('/art-tracker/museum', {
 				});
 			},
-			postMuseum : function() {
-            				return $http.post('/art-tracker/museum', {
-            				});
+			postMuseum : function(data) {
+            				return $http.post('/art-tracker/museum',data);
             }
 		}
 	});
 
-	artTrackerApp.controller('MuseumController', [ '$scope', '$interval', 'ApiFactory',
+	artTrackerApp.controller('MuseumController', [ '$scope', '$interval','ApiFactory',
 			MuseumController ]);
+
 
 	function MuseumController($scope, $interval, ApiFactory) {
 		var reloadInterval = 1200000;
@@ -35,10 +35,7 @@
 			    ],
 			    paginationPageSize: 10,
                 enableSorting: true,
-                enableRowSelection: true,
-                enableFullRowSelection: true,
                 multiSelect: true,
-                enableRowHeaderSelection: true,
                 enableColumnMenus: true,
                 enableFiltering: true,
                 showGridFooter: true,
@@ -51,6 +48,7 @@
 		// METHODS
 		angular.extend($scope, {
 			retrieveMuseums : retrieveMuseums,
+			reload : reload,
 			addMuseum : addMuseum,
 			editMuseum : editMuseum,
 			deleteMuseum : deleteMuseum
@@ -59,34 +57,31 @@
 		function retrieveMuseums() {
 			ApiFactory.getMuseums().then(
 					function(response) {
-						$scope.museums = response.data.museums;
-						$scope.gridOptions.data =  $scope.museums;
+						$scope.gridOptions.data =  response.data.museums;
 					}, function(error) {
 						handleApiError(error);
 					});
 		}
 
-		function addMuseum() {
-        			ApiFactory.postMuseum().then(
-        					function(response) {
-        						$scope.gridOptions.data =  response.data.museums;;
 
-        						$scope.gridOpts.data.push({
-                                                "Name": "New ",
-                                                "Postal Code": "Person ",
-                                                "Neighborhood": "abc",
-                                                "Council District": true,
-                                                "Police District": "male",
-                                                "Address": "male"
-                                });
+		function addMuseum() {
+
+            var parameter = JSON.stringify({name:"user", zip_code:"user", neighborhood:"user",
+            council_district:1, police_district:"user", address:"user"});
+
+        			ApiFactory.postMuseum(parameter).then(
+        					function(response) {
+
+        						$scope.gridOptions.data.push(parameter);
 
         					}, function(error) {
         						handleApiError(error);
         					});
-        		}
+        }
 
         function editMuseum() {
-            alert("editMuseum");
+            alert("wwwww");
+
         }
 
         function deleteMuseum() {
