@@ -21,14 +21,15 @@ public class Organization implements Serializable {
     @Column(nullable = false)
     private int id;
 
+    @Column(nullable = false)
     private String organization;
 
     private String address;
 
-    @Column(name = "zip_code")
+    @Column(nullable = false, name = "zip_code")
     private String zipCode;
 
-    @Column(name = "city_State")
+    @Column(name = "city_state")
     private String cityState;
 
     private String url;

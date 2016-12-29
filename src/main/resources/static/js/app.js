@@ -173,7 +173,8 @@
 
           function save() {
 
-            var parameter = JSON.stringify({name: vm.model.name, zip_code:vm.model.zip_code, neighborhood:vm.model.neighborhood,
+alert(vm.model.id);
+            var parameter = JSON.stringify({id:vm.model.id, name: vm.model.name, zip_code:vm.model.zip_code, neighborhood:vm.model.neighborhood,
                     council_district:vm.model.council_district, police_district:vm.model.police_district, address:vm.model.address});
 
             ApiFactory.postMuseum(parameter).then(

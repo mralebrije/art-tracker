@@ -46,7 +46,7 @@ public class MuseumService {
     @Transactional(readOnly = false)
     public int createOrUpdateMuseum(final MuseumRequest museumRequest) {
 
-        Museum museum = museumRepository.findByName(museumRequest.getName());
+        Museum museum = museumRepository.findById(Integer.valueOf(museumRequest.getId()));
         if (museum == null) {
             museum = new Museum();
             LOG.info("Museum to create: {}", museumRequest.getName());

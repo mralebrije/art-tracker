@@ -23,9 +23,10 @@ public class Museum implements Serializable {
     @Column(nullable = false)
     private int id;
 
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "zip_code")
+    @Column(nullable = false, name = "zip_code")
     private String zipCode;
 
     private String neighborhood;
