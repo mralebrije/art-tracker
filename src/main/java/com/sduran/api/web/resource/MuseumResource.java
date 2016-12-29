@@ -25,8 +25,9 @@ public class MuseumResource implements Serializable {
     private Integer id;
     @ApiObjectField(name = "name", description = "Museum name")
     private String name;
-    @ApiObjectField(name = "zip", description = "Museum zip code")
-    private String zip;
+    @ApiObjectField(name = "zip_code", description = "Museum zip code")
+    @JsonProperty("zip_code")
+    private String zipCode;
     @ApiObjectField(name = "neighborhood", description = "Museum neighborhood")
     private String neighborhood;
     @ApiObjectField(name = "council_district", description = "Museum council district number")

@@ -7,6 +7,7 @@ import com.sduran.api.web.request.MuseumRequest;
 import com.sduran.api.web.response.BaseApiFormResponse;
 import com.sduran.api.web.response.DistrictsSearchResponse;
 import com.sduran.api.web.response.MuseumsSearchResponse;
+import com.sduran.api.web.response.NewMuseumResponse;
 import com.sduran.api.web.validator.MuseumValidator;
 import org.jsondoc.core.annotation.*;
 import org.jsondoc.core.pojo.ApiVerb;
@@ -46,19 +47,21 @@ public class MuseumRestController extends BaseController {
             MediaType.APPLICATION_JSON_VALUE})
     @ApiErrors(apierrors = {@ApiError(code = "404", description = "Wrong fields")})
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<BaseApiFormResponse> updateMuseum(
+    public ResponseEntity<NewMuseumResponse> updateMuseum(
             @ApiQueryParam(name = "museumRequest", description = "Request that contains museum information", required = true) @ApiBodyObject @Validated @RequestBody MuseumRequest museumRequest,
             BindingResult result) {
 
         LOG.info("updateMuseum: {}", museumRequest);
 
+        NewMuseumResponse response = new NewMuseumResponse();
+
         new MuseumValidator().validate(museumRequest, result);
         if (result.hasErrors()) {
-            return buildErrors(new BaseApiFormResponse(), result);
+            return buildErrors(response, result);
         }
 
-        museumService.createOrUpdateMuseum(museumRequest);
-        return new ResponseEntity<BaseApiFormResponse>(HttpStatus.OK);
+        response.setId(museumService.createOrUpdateMuseum(museumRequest));
+        return new ResponseEntity<NewMuseumResponse>(response,HttpStatus.OK);
     }
 
     @ApiMethod(path = "/museum/{id}", verb = ApiVerb.POST, description = "Delete a Museum record")

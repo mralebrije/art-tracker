@@ -44,7 +44,7 @@ public class MuseumService {
 
 
     @Transactional(readOnly = false)
-    public void createOrUpdateMuseum(final MuseumRequest museumRequest) {
+    public int createOrUpdateMuseum(final MuseumRequest museumRequest) {
 
         Museum museum = museumRepository.findByName(museumRequest.getName());
         if (museum == null) {
@@ -55,8 +55,8 @@ public class MuseumService {
         populateNewMuseum(museum,museumRequest);
 
         museumRepository.save(museum);
-        LOG.info("Museum updated: {}", museumRequest.getName());
-
+        LOG.info("Museum updated: {} with id: {}", museumRequest.getName(), museum.getId());
+        return museum.getId();
     }
 
     @Transactional(readOnly = false)
@@ -92,7 +92,7 @@ public class MuseumService {
         museum.setCouncilDistrict(item.getCouncilDistrict());
         museum.setPoliceDistrict(item.getPoliceDistrict());
         museum.setAddress(item.getAddress());
-        museum.setZip(item.getZipCode());
+        museum.setZipCode(item.getZipCode());
     }
 
     private void populateNewMuseum(Museum museum, MuseumRequest museumRequest) {

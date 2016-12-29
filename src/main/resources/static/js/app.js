@@ -8,8 +8,13 @@
 				});
 			},
 			postMuseum : function(data) {
-            				return $http.post('/art-tracker/museum',data);
+            	return $http.post('/art-tracker/museum',data);
+            },
+            deleteMuseum : function(data) {
+                         	return $http.delete('/art-tracker/museum' + '/'+data, {
+                });
             }
+
 		}
 	});
 
@@ -29,7 +34,7 @@
 			    columnDefs: [
 			        { name:'Id', field: 'id', visible:false},
                     { name:'Name', field: 'name', headerCellClass: 'purple'},
-                    { name:'Postal Code', field: 'zip' },
+                    { name:'Zip Code', field: 'zip_code' },
                     { name:'Neighborhood', field: 'neighborhood' },
                     { name:'Council District', field: 'council_district'},
                     { name:'Police District', field: 'police_district'},
@@ -44,7 +49,8 @@
                 enableColumnMenus: true,
                 enableFiltering: true,
                 showGridFooter: true,
-                showColumnFooter: true
+                showColumnFooter: true,
+                enableRowHashing:false
             },
             hideGrid:false,
 			error : false
@@ -78,8 +84,8 @@
                                 }
                 });
 
-                  modalInstance.result.then(function (entity) {
-                                $scope.gridOptions.data.push(entity);
+                  modalInstance.result.then(function (entity, isSuccess) {
+                               $scope.gridOptions.data.push(entity);
                                alert("Museum added successfully");
                   });
 
@@ -97,15 +103,24 @@
                 }
              });
 
-             modalInstance.result.then(function (entity) {
-                alert("Museum edited successfully");
+             modalInstance.result.then(function (entity, isSuccess) {
+
+                if(isSuccess)
+                  alert("Museum edited successfully");
              });
 
         }
 
 
-        function deleteMuseum(id) {
-            alert(id);
+        function deleteMuseum(row) {
+            ApiFactory.deleteMuseum(row.entity.id).then(
+            					function(response) {
+            						var i = $scope.gridOptions.data.indexOf(row.entity);
+                                    $scope.gridOptions.data.splice(i, 1);
+                                    alert("Museum deleted successfully");
+            					}, function(error) {
+            						handleApiError(error);
+            					});
 		}
 
 		function handleApiError(error) {
@@ -138,7 +153,7 @@
                           type: "object",
                           properties: {
                              name: { type: 'string', title: 'Name' },
-                             zip_code: { type: 'string', title: 'Zip' },
+                             zip_code: { type: 'string', title: 'Zip Code' },
                              neighborhood: { type: 'string', title: 'Neighborhood' },
                              council_district: { type: 'integer', title: 'Council District' },
                              police_district: { type: 'string', title: 'Police District' },
@@ -164,7 +179,7 @@
             ApiFactory.postMuseum(parameter).then(
                                 function(response) {
                                       row.entity = angular.extend(row.entity, vm.model);
-                                      $modalInstance.close(vm.model);
+                                      $modalInstance.close(vm.model, true);
                                 }, function(error) {
                                     alert("error");
             });
@@ -177,7 +192,7 @@
                               type: "object",
                               properties: {
                                  name: { type: 'string', title: 'Name' },
-                                 zip_code: { type: 'string', title: 'Zip' },
+                                 zip_code: { type: 'string', title: 'Zip Code' },
                                  neighborhood: { type: 'string', title: 'Neighborhood' },
                                  council_district: { type: 'integer', title: 'Council District' },
                                  police_district: { type: 'string', title: 'Police District' },
@@ -201,7 +216,8 @@
 
                 ApiFactory.postMuseum(parameter).then(
                     function(response) {
-                         $modalInstance.close( vm.model);
+                         vm.model.id = response.id;
+                         $modalInstance.close( vm.model , true);
                     }, function(error) {
                         alert("error");
                     });
