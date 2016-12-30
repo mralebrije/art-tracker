@@ -34,10 +34,10 @@
 			    columnDefs: [
 			        { name:'Id', field: 'id', visible:false},
                     { name:'Name', field: 'name', headerCellClass: 'purple'},
-                    { name:'Zip Code', field: 'zip_code' },
-                    { name:'Neighborhood', field: 'neighborhood' },
-                    { name:'Council District', field: 'council_district'},
-                    { name:'Police District', field: 'police_district'},
+                    { name:'Zip Code', field: 'zip_code', width: 80 , headerCellClass: 'red'},
+                    { name:'Neighborhood', field: 'neighborhood'},
+                    { name:'Council District', field: 'council_district', width: 110},
+                    { name:'Police District', field: 'police_district' , width: 110},
                     { name:'Address', field: 'address'},
                     { name: 'Actions', editable:false, enableFiltering: false, enableSorting: false,
                       cellTemplate:'action'  }
@@ -50,7 +50,8 @@
                 enableFiltering: true,
                 showGridFooter: true,
                 showColumnFooter: true,
-                enableRowHashing:false
+                enableRowHashing:false,
+                rowHeight:50
             },
             hideGrid:false,
 			error : false
@@ -62,7 +63,8 @@
 			reload : reload,
 			addMuseum : addMuseum,
 			deleteMuseum : deleteMuseum,
-            editMuseum : editMuseum
+            editMuseum : editMuseum,
+            findOrganizations : findOrganizations
 		});
 
 		function retrieveMuseums() {
@@ -85,8 +87,11 @@
                 });
 
                   modalInstance.result.then(function (entity, isSuccess) {
-                               $scope.gridOptions.data.push(entity);
-                               alert("Museum added successfully");
+
+                      if(isSuccess){
+                                   $scope.gridOptions.data.push(entity);
+                                   alert("Museum added successfully");
+                      }
                   });
 
         }
@@ -111,7 +116,6 @@
 
         }
 
-
         function deleteMuseum(row) {
             ApiFactory.deleteMuseum(row.entity.id).then(
             					function(response) {
@@ -122,6 +126,25 @@
             						handleApiError(error);
             					});
 		}
+
+		 function findOrganizations( row) {
+                    var modalInstance =  $modal.open({
+                        templateUrl: 'edit',
+                        controller: ['ApiFactory', '$modalInstance', 'grid', 'row', RowEditController],
+                        controllerAs: 'vm',
+                        resolve: {
+                            grid: function () { return grid; },
+                            row: function () { return row; },
+                            ApiFactory: function () {return ApiFactory}
+                        }
+                     });
+
+                     modalInstance.result.then(function (entity, isSuccess) {
+
+                        if(isSuccess)
+                          alert("Museum edited successfully");
+                     });
+         }
 
 		function handleApiError(error) {
 		            alert("Error in REST service")
@@ -173,7 +196,6 @@
 
           function save() {
 
-alert(vm.model.id);
             var parameter = JSON.stringify({id:vm.model.id, name: vm.model.name, zip_code:vm.model.zip_code, neighborhood:vm.model.neighborhood,
                     council_district:vm.model.council_district, police_district:vm.model.police_district, address:vm.model.address});
 

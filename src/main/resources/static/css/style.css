@@ -8,9 +8,22 @@
 
  .navbar{
     padding: 15px;
-    background-color: #80cc99ff !important;
+    background-color: #26c3ff !important;
     margin-bottom: 0;
 }
+
+ .organizationSummary{
+    padding: 25px;
+    background-color: #80D3D3D3 !important;
+    margin-bottom: 0;
+}
+
+ .organizationChart{
+    padding: 25px;
+    background-color: #80E6E6FA !important;
+    margin-bottom: 0;
+}
+
 
 .white-text{
       color: white !important;
@@ -34,6 +47,7 @@
  * Extra large button extensions. Extends `.btn`.
  */
 .btn-customized {
+    margin:10px;
     padding: 14px 24px;
     font-size: 14px;
     line-height: normal;
@@ -52,3 +66,5 @@ h2 {
 }
 
 .purple { color: black;  background-color: #E6E6FA !important; }
+
+.red { color: black;  background-color: #ff7f7f !important; }
