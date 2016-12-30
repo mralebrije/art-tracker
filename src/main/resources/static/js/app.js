@@ -13,6 +13,10 @@
             deleteMuseum : function(data) {
                          	return $http.delete('/art-tracker/museum' + '/'+data, {
                 });
+            },
+            getArtOrganizations : function(data) {
+                 return $http.get('/art-tracker/organization' + '/'+data, {
+                            });
             }
 
 		}
@@ -128,22 +132,13 @@
 		}
 
 		 function findOrganizations( row) {
-                    var modalInstance =  $modal.open({
-                        templateUrl: 'edit',
-                        controller: ['ApiFactory', '$modalInstance', 'grid', 'row', RowEditController],
-                        controllerAs: 'vm',
-                        resolve: {
-                            grid: function () { return grid; },
-                            row: function () { return row; },
-                            ApiFactory: function () {return ApiFactory}
-                        }
-                     });
-
-                     modalInstance.result.then(function (entity, isSuccess) {
-
-                        if(isSuccess)
-                          alert("Museum edited successfully");
-                     });
+                    ApiFactory.getArtOrganizations(row.entity.zip_code).then(
+                    					function(response) {
+                    						//response.data.organizations;
+                    						alert("There are "+response.data.total+" Art Organizations around!");
+                    					}, function(error) {
+                    						handleApiError(error);
+                    					});
          }
 
 		function handleApiError(error) {
