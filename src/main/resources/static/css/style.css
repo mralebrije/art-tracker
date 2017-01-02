@@ -23,8 +23,8 @@
 }
 
 .summaryChart {
-    height: 70% !important;
-    width: 70% !important;
+    height: 100% !important;
+    width: 100% !important;
     display: table !important;
     margin: 0 auto !important;
 }
@@ -124,4 +124,8 @@ h5{
     font-weight: bold !important;
     font-size: 18px !important;
     color: #26c3ff !important;
+}
+
+.chart-text {
+    font-size: 22px !important;
 }
