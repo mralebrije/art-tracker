@@ -98,7 +98,11 @@
             selectedOrganization: '',
             labelsZipCode: [],
             seriesZipCode: ['Museums', 'Art Organizations'],
-            dataZipCode: []
+            dataZipCode: [],
+            maxZipCode: '',
+            maxZipCodeTotal: '',
+            maxZipCodeMuseums: '',
+            maxZipCodeOrganizations: ''
 
         });
 
@@ -220,6 +224,12 @@
 
                     $scope.dataZipCode.push(museumsAmountList);
                     $scope.dataZipCode.push(organizationsAmountList);
+
+                    $scope.maxZipCode = response.data.maxZipCode.zip_code ;
+                    $scope.maxZipCodeMuseums= response.data.maxZipCode.museums_count ;
+                    $scope.maxZipCodeOrganizations= response.data.maxZipCode.organizations_count;
+
+                    $scope.maxZipCodeTotal= $scope.maxZipCodeMuseums + $scope.maxZipCodeOrganizations;
                 },
                 function(error) {
                     handleApiError(error);

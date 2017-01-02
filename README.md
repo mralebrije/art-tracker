@@ -108,4 +108,4 @@ http://localhost:8080/art-tracker/jsondoc-ui.html
  
 ## BONUS: Android App
 
-
+![alt tag](http://impossiblesolitaire.com/wp-content/uploads/2015/09/available_google.png)

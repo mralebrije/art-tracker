@@ -24,9 +24,13 @@ public class MOStatisticsResponse extends BaseApiFormResponse {
 	@ApiObjectField(name = "statistics_zip_code_list", description = "Object list of MOStatisticsResource", required = true)
 	private List<MOStatisticsResource> statisticsZipCodeList;
 
-	public MOStatisticsResponse(List<MOStatisticsResource> statisticsZipCodeList) {
+	@ApiObjectField(name = "max_zip_code", description = "Object with that contains information about zip code region with more Museums and Art Organizations", required = true)
+	private MOStatisticsResource maxZipCode;
+
+	public MOStatisticsResponse(List<MOStatisticsResource> statisticsZipCodeList,MOStatisticsResource maxZipCode  ) {
 		super();
 		this.statisticsZipCodeList =  statisticsZipCodeList;
+		this.maxZipCode = maxZipCode;
 
 	}
 

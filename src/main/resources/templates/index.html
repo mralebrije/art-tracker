@@ -31,7 +31,7 @@
 <body>
 
 <header>
-    <img th:src="@{images/img_baltimore_background.JPG}" alt="Baltimore logo" />
+    <img class="banner" th:src="@{images/img_baltimore_background.JPG}" alt="Baltimore logo" />
     <nav class="navbar">
         <div class="container">
             <div class="navbar-header">
@@ -76,7 +76,7 @@
                 </div>
                 <div class="organizationInfoContainer">
                     <h4 class="white-text">Organization information:</h4>
-                    <div class="organizationInfo">
+                    <div class="textInfo">
                         <h5>Name: {{selectedOrganization.organization}} </h5>
                         <h5>Address: {{selectedOrganization.address}}</h5>
                         <h5>Website: {{selectedOrganization.url}}</h5>
@@ -96,8 +96,19 @@
 
         <div id="section3" class="chart-container">
             <div class="navbar">
-                <h3 class="white-text"><i class="fa fa-trello fa-3x white-icon"></i> Museums and Art Organizations By ZIP CODE</h3>
+                <h3 class="white-text"><i class="fa fa-trello fa-3x white-icon"></i> Museums and Art Organizations By ZIP CODE
+
+                </h3>
             </div>
+
+            <div class="textInfo">
+                <h5 class="bold-text-blue">ZIP CODE {{maxZipCode}}</h5>
+                <h5 class="bold-text">with a total of {{maxZipCodeTotal}} Art Places
+                    ({{maxZipCodeMuseums}} museums,{{maxZipCodeOrganizations}} organizations)
+                    is the most populated art area in Baltimore </h5>
+                <h5>*Below chart shows the number of museums and art organizations by Zip Code: </h5>
+            </div>
+
 
             <canvas class="summaryChart chart chart-bar"
                     chart-data="dataZipCode" chart-labels="labelsZipCode" chart-series="seriesZipCode">

@@ -1,3 +1,7 @@
+.banner {
+    width: 100%;
+}
+
 .body-container {
     padding: 20px;
     font-size: 85%;
@@ -52,10 +56,10 @@
     height: 500px;
     width: 50%;
 }
-.organizationInfo {
-    padding: 15px;
-    background-color: white;
-    font-weight: bold;
+.textInfo {
+    padding: 15px !important;
+    background-color: white !important;
+
 }
 .organizationMap {
     height: 100%;
@@ -100,6 +104,9 @@ h4 {
     color: white;
     font-weight: bold;
 }
+h5{
+    font-size: 16px !important;
+}
 .purple {
     color: black;
     background-color: #E6E6FA !important;
@@ -107,4 +114,14 @@ h4 {
 .red {
     color: black;
     background-color: #ff7f7f !important;
+}
+
+.bold-text {
+    font-weight: bold !important;
+    font-size: 18px !important;
+}
+.bold-text-blue {
+    font-weight: bold !important;
+    font-size: 18px !important;
+    color: #26c3ff !important;
 }

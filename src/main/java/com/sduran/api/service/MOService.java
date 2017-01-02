@@ -42,7 +42,24 @@ public class MOService {
             populateMOStatistics(zipCode, moStatisticsResource);
             statisticsList.add(moStatisticsResource);
         }
+
         return statisticsList;
+    }
+
+    public MOStatisticsResource findMaxZipCode(List<MOStatisticsResource> list) {
+        long max = -1;
+        MOStatisticsResource zipCodeWithMoreAmount = new MOStatisticsResource();
+
+        for (MOStatisticsResource item : list){
+            long tmpMax = item.getMuseumsCount() + item.getOrganizationsCount();
+            if (tmpMax > max){
+                max =tmpMax;
+                zipCodeWithMoreAmount = item;
+            }
+        }
+
+        return zipCodeWithMoreAmount;
+
     }
 
     private void populateMOStatistics(String zipCode, MOStatisticsResource moStatisticsResource) {
@@ -66,5 +83,6 @@ public class MOService {
 
 
     private static final Logger LOG = LoggerFactory.getLogger(MOService.class);
+
 
 }

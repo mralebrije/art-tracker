@@ -3,6 +3,7 @@ package com.sduran.api.web;
 import com.sduran.api.constants.ApiConstants;
 import com.sduran.api.service.MOService;
 import com.sduran.api.service.OrganizationService;
+import com.sduran.api.web.resource.MOStatisticsResource;
 import com.sduran.api.web.response.MOStatisticsResponse;
 import com.sduran.api.web.response.OrganizationSearchResponse;
 import org.jsondoc.core.annotation.Api;
@@ -22,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @Api(name = "Museums and Art Organizations Statistics Services", description = "Methods to manage art organizations and museums statistics", visibility = ApiVisibility.PUBLIC, group = ApiConstants.STATISTICS_GROUP)
 @ApiVersion(since = "1.0")
 @RestController
@@ -37,7 +40,9 @@ public class MORestController extends BaseController {
 
         MOStatisticsResponse moStatisticsResponse = new MOStatisticsResponse();
 
-        moStatisticsResponse.setStatisticsZipCodeList(moService.findZipCodeStatistics());
+        List<MOStatisticsResource> list = moService.findZipCodeStatistics();
+        moStatisticsResponse.setStatisticsZipCodeList(list);
+        moStatisticsResponse.setMaxZipCode(moService.findMaxZipCode(list));
 
         return new ResponseEntity<MOStatisticsResponse>(moStatisticsResponse, HttpStatus.OK);
     }
