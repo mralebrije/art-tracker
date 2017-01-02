@@ -1,116 +1,98 @@
-.body - container {
-        padding: 20 px;
-        font - size: 85 % ;
-    }
-
-    .table - container {}
-
-    .navbar {
-        padding: 15 px;
-        background - color: #26c3ff !important;
+.body-container {
+    padding: 20px;
+    font-size: 85%;
+}
+.table-container {} .navbar {
+    padding: 15px;
+    background-color: #26c3ff !important;
     margin-bottom: 0;
 }
-
 .organizations-container {
-    background: # EEE;
-        width: 100 % ;
-        height: 600 px;
-        overflow: auo;
-    }
-
-    .organizationSummaryContainer {
-        padding: 15 px;
-        background - color: #26c3ff !important;
+    background: #EEE;
+    width: 100%;
+    height: 600px;
+    overflow: auo;
+}
+.organizationSummaryContainer {
+    padding: 15px;
+    background-color: #26c3ff !important;
     float: left;
     height: 100%;
     width: 50%;
-    overflow:auo;
+    overflow: auo;
+}
+.organizationMapContainer {
+    background-color: #80E6E6FA !important;
+    float: right;
+    height: 100%;
+    width: 50%;
+}
+.organizationList {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 500px;
+    width: 50%;
+    float: left;
+}
+.organizationInfoContainer {
+    padding: 15px;
+    float: right;
+    height: 500px;
+    width: 50%;
+}
+.organizationInfo {
+    padding: 15px;
+    background-color: white;
+    font-weight: bold;
+}
+.organizationMap {
+    height: 100%;
+}
+.white-text {
+    color: white !important;
+    font-weight: bold;
+}
+.myGrid {
+    width: 1200px;
+    height: 800px;
+}
+.white-icon {
+    color: white !important;
+}
+.white-icon:hover {
+    color: #D3D3D3 !important;
 }
 
- .organizationMapContainer{
-    background-color: # 80E6 E6FA!important;
-        float: right;
-        height: 100 % ;
-        width: 50 % ;
-    }
+/**
+ * Extra large button extensions. Extends `.btn`.
+ */
 
-    .organizationList {
-        overflow: hidden;
-        overflow - y: scroll;
-        height: 500 px;
-        width: 50 % ;
-        float: left;
-    }
-
-    .organizationInfoContainer {
-        padding: 15 px;
-        float: right;
-        height: 500 px;
-        width: 50 % ;
-    }
-
-
-    .organizationInfo {
-        padding: 15 px;
-        background - color: white;
-        font - weight: bold;
-    }
-
-    .organizationMap {
-        height: 100 % ;
-    }
-
-
-    .white - text {
-        color: white!important;
-        font - weight: bold;
-    }
-
-    .myGrid {
-        width: 1200 px;
-        height: 800 px;
-    }
-
-    .white - icon {
-        color: white!important;
-    }
-
-    .white - icon: hover {
-        color: #D3D3D3!important;
-    }
-
-    /**
-     * Extra large button extensions. Extends `.btn`.
-     */
-    .btn - customized {
-        margin: 5 px;
-        padding: 14 px 24 px;
-        font - size: 14 px;
-        line - height: normal; -
-        webkit - border - radius: 4 px; -
-        moz - border - radius: 4 px;
-        border - radius: 4 px;
-    }
-
+.btn-customized {
+    margin: 5px;
+    padding: 14px 24px;
+    font-size: 14px;
+    line-height: normal;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
 th {
-    text - align: center;
+    text-align: center;
 }
-
 h2 {
     color: white;
-    font - weight: bold;
+    font-weight: bold;
 }
-
 h4 {
-    margin 0 px;
+    margin 0px;
     color: white;
-    font - weight: bold;
+    font-weight: bold;
 }
-
 .purple {
-    color: black;background - color: #E6E6FA!important;
+    color: black;
+    background-color: #E6E6FA !important;
 }
-
 .red {
-    color: black;background - color: #ff7f7f!important;
+    color: black;
+    background-color: #ff7f7f !important;
 }
