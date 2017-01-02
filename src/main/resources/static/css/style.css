@@ -1,70 +1,116 @@
-.body-container {
-	padding: 20px;
-	font-size: 85%;
-}
+.body - container {
+        padding: 20 px;
+        font - size: 85 % ;
+    }
 
-.table-container {
-}
+    .table - container {}
 
- .navbar{
-    padding: 15px;
-    background-color: #26c3ff !important;
+    .navbar {
+        padding: 15 px;
+        background - color: #26c3ff !important;
     margin-bottom: 0;
 }
 
- .organizationSummary{
-    padding: 25px;
-    background-color: #80D3D3D3 !important;
-    margin-bottom: 0;
+.organizations-container {
+    background: # EEE;
+        width: 100 % ;
+        height: 600 px;
+        overflow: auo;
+    }
+
+    .organizationSummaryContainer {
+        padding: 15 px;
+        background - color: #26c3ff !important;
+    float: left;
+    height: 100%;
+    width: 50%;
+    overflow:auo;
 }
 
- .organizationChart{
-    padding: 25px;
-    background-color: #80E6E6FA !important;
-    margin-bottom: 0;
-}
+ .organizationMapContainer{
+    background-color: # 80E6 E6FA!important;
+        float: right;
+        height: 100 % ;
+        width: 50 % ;
+    }
+
+    .organizationList {
+        overflow: hidden;
+        overflow - y: scroll;
+        height: 500 px;
+        width: 50 % ;
+        float: left;
+    }
+
+    .organizationInfoContainer {
+        padding: 15 px;
+        float: right;
+        height: 500 px;
+        width: 50 % ;
+    }
 
 
-.white-text{
-      color: white !important;
-      font-weight: bold;
-}
+    .organizationInfo {
+        padding: 15 px;
+        background - color: white;
+        font - weight: bold;
+    }
 
-.myGrid {
-      width: 1200px;
-      height: 800px;
-}
+    .organizationMap {
+        height: 100 % ;
+    }
 
-.white-icon{
-      color: white !important;
-}
 
-.white-icon:hover{
-     color: #FF570A !important;
-}
+    .white - text {
+        color: white!important;
+        font - weight: bold;
+    }
 
-/**
- * Extra large button extensions. Extends `.btn`.
- */
-.btn-customized {
-    margin:10px;
-    padding: 14px 24px;
-    font-size: 14px;
-    line-height: normal;
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
+    .myGrid {
+        width: 1200 px;
+        height: 800 px;
+    }
+
+    .white - icon {
+        color: white!important;
+    }
+
+    .white - icon: hover {
+        color: #D3D3D3!important;
+    }
+
+    /**
+     * Extra large button extensions. Extends `.btn`.
+     */
+    .btn - customized {
+        margin: 5 px;
+        padding: 14 px 24 px;
+        font - size: 14 px;
+        line - height: normal; -
+        webkit - border - radius: 4 px; -
+        moz - border - radius: 4 px;
+        border - radius: 4 px;
     }
 
 th {
-	text-align: center;
+    text - align: center;
 }
 
 h2 {
     color: white;
-    font-weight: bold;
+    font - weight: bold;
 }
 
-.purple { color: black;  background-color: #E6E6FA !important; }
+h4 {
+    margin 0 px;
+    color: white;
+    font - weight: bold;
+}
 
-.red { color: black;  background-color: #ff7f7f !important; }
+.purple {
+    color: black;background - color: #E6E6FA!important;
+}
+
+.red {
+    color: black;background - color: #ff7f7f!important;
+}
