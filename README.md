@@ -57,13 +57,20 @@ You can run this project using 2 profiles: **local**(_default_, using H2 DB), **
  
 ###### _Deployment_
 You can run the application using maven configuration command:
- ```spring-boot:run.```
+
+```
+spring-boot:run.
+```
 
 Or you can build the JAR file with maven configuration command:
-  ```clean package```
+ ```
+ clean package
+ ```
   
 Then you can execute the runnable JAR generated:
-  ```java -jar target/art-tracker-0.0.1-SNAPSHOT.jar```
+ ```
+  java -jar target/art-tracker-0.0.1-SNAPSHOT.jar
+ ```
 
 ## DB configuation
 
