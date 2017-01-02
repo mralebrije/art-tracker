@@ -2,7 +2,7 @@
 
  Art Tracker shows location of museums within Baltimore City, this allows you to make **CRUD** operations, apply search, filters and ordering over museums.
  Also you can explore which other Art Organizations within Baltimore City are close to each museum selected and visualize them into a Google Map. By last you
- can visualize in a 
+can visualize in a chart what are the zip codes zones with more museums and art organizations.
  
 ## Why Art Tracker?
 

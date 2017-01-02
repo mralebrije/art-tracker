@@ -13,6 +13,18 @@
     height: 600px;
     overflow: auo;
 }
+
+.chart-container {
+    background: #fafafa;
+}
+
+.summaryChart {
+    height: 70% !important;
+    width: 70% !important;
+    display: table !important;
+    margin: 0 auto !important;
+}
+
 .organizationSummaryContainer {
     padding: 15px;
     background-color: #26c3ff !important;

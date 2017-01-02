@@ -1,5 +1,5 @@
 (function() {
-    var artTrackerApp = angular.module('artTrackerApp', ['ngTouch', 'ui.grid', 'ui.grid.selection', 'ui.grid.pagination', 'ui.grid.edit', 'ui.bootstrap', 'schemaForm', 'ngMap']);
+    var artTrackerApp = angular.module('artTrackerApp', ['ngTouch', 'ui.grid', 'ui.grid.selection', 'ui.grid.pagination', 'ui.grid.edit', 'ui.bootstrap', 'schemaForm', 'ngMap', "chart.js"]);
 
     artTrackerApp.factory('ApiFactory', function($http) {
         return {
@@ -14,8 +14,10 @@
             },
             getArtOrganizations: function(data) {
                 return $http.get('/art-tracker/organization' + '/' + data, {});
+            },
+            getMOZipStatistics: function() {
+                return $http.get('/art-tracker/mo/zip', {});
             }
-
         }
     });
 
@@ -93,7 +95,11 @@
             organizations: [],
             selectedZip: '',
             positions: [],
-            selectedOrganization: ''
+            selectedOrganization: '',
+            labelsZipCode: [],
+            seriesZipCode: ['Museums', 'Art Organizations'],
+            dataZipCode: []
+
         });
 
         // METHODS
@@ -104,7 +110,8 @@
             deleteMuseum: deleteMuseum,
             editMuseum: editMuseum,
             findOrganizations: findOrganizations,
-            updateOrganizationInfo: updateOrganizationInfo
+            updateOrganizationInfo: updateOrganizationInfo,
+            retrieveMOZipStatistics: retrieveMOZipStatistics
         });
 
         function retrieveMuseums() {
@@ -197,6 +204,28 @@
             $scope.selectedOrganization = organization;
         }
 
+        function retrieveMOZipStatistics() {
+            ApiFactory.getMOZipStatistics().then(
+                function(response) {
+
+                    var museumsAmountList = [];
+                    var organizationsAmountList = [];
+
+                    angular.forEach(response.data.statisticsZipCodeList, function(zipCodeStatistic, key) {
+                        $scope.labelsZipCode.push(zipCodeStatistic.zip_code);
+                        museumsAmountList.push(zipCodeStatistic.museums_count);
+                        organizationsAmountList.push(zipCodeStatistic.organizations_count);
+
+                    }, log);
+
+                    $scope.dataZipCode.push(museumsAmountList);
+                    $scope.dataZipCode.push(organizationsAmountList);
+                },
+                function(error) {
+                    handleApiError(error);
+                });
+        }
+
         function handleApiError(error) {
             alert("Error in REST service")
             if (error.config.errorCause === 1) {
@@ -207,6 +236,7 @@
         function initialize() {
             $scope.error = false;
             retrieveMuseums();
+            retrieveMOZipStatistics();
             reload();
         }
 

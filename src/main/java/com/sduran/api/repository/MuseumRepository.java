@@ -19,4 +19,10 @@ public interface MuseumRepository extends JpaRepository<Museum, Long> {
 
     @Query(value = "select COUNT(DISTINCT police_district) from museum;", nativeQuery = true)
     Long countDistinctByPoliceDistrict();
+
+    @Query(value = "select DISTINCT zip_code from museum;", nativeQuery = true)
+    List<String> findDistinctZipCodes();
+
+    @Query(value = "select COUNT(*) from museum where zip_code = ?1 ;", nativeQuery = true)
+    Long countByZipCode(String zipCode);
 }

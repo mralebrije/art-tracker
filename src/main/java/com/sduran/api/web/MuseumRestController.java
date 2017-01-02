@@ -91,6 +91,5 @@ public class MuseumRestController extends BaseController {
         return new ResponseEntity<DistrictsSearchResponse>(districtsSearchResponse, HttpStatus.OK);
     }
 
-
     private static final Logger LOG = LoggerFactory.getLogger(MuseumRestController.class);
 }

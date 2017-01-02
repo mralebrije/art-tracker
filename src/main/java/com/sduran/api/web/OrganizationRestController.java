@@ -22,7 +22,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@Api(name = "Art Organization Services", description = "Methods to manage art organizations", visibility = ApiVisibility.PUBLIC, group = ApiConstants.MUSEUM_GROUP)
+@Api(name = "Art Organization Services", description = "Methods to manage art organizations", visibility = ApiVisibility.PUBLIC, group = ApiConstants.ORGANIZATION_GROUP)
 @ApiVersion(since = "1.0")
 @RestController
 @RequestMapping("/organization")

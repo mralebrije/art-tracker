@@ -14,4 +14,7 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
 
     @Query(value = "select COUNT(*) from organization where zip_code = ?1 ;", nativeQuery = true)
     Long countByZipCode(String zipCode);
+
+    @Query(value = "select DISTINCT zip_code from organization;", nativeQuery = true)
+    List<String> findDistinctZipCodes();
 }
