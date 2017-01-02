@@ -31,8 +31,8 @@ public class MORestController extends BaseController {
     @Autowired
     private MOService moService;
 
-    @ApiMethod(path = "/mo/zip/", verb = ApiVerb.GET, description = "Search statistics about the amount of museums and organizations found for each ZIP CODE", produces = {MediaType.APPLICATION_JSON_VALUE})
-    @RequestMapping(value = "/zip/", method = RequestMethod.GET)
+    @ApiMethod(path = "/mo", verb = ApiVerb.GET, description = "Search statistics about the amount of museums and organizations found for each ZIP CODE", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<MOStatisticsResponse> getMuseumsAndOrganizationsStatistics() {
 
         MOStatisticsResponse moStatisticsResponse = new MOStatisticsResponse();

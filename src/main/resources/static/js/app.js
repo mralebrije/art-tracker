@@ -16,7 +16,7 @@
                 return $http.get('/art-tracker/organization' + '/' + data, {});
             },
             getMOZipStatistics: function() {
-                return $http.get('/art-tracker/mo/zip', {});
+                return $http.get('/art-tracker/mo', {});
             }
         }
     });
@@ -216,7 +216,7 @@
                         museumsAmountList.push(zipCodeStatistic.museums_count);
                         organizationsAmountList.push(zipCodeStatistic.organizations_count);
 
-                    }, log);
+                    });
 
                     $scope.dataZipCode.push(museumsAmountList);
                     $scope.dataZipCode.push(organizationsAmountList);
