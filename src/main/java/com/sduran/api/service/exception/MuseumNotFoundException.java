@@ -1,6 +1,6 @@
 package com.sduran.api.service.exception;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("unused")
 public class MuseumNotFoundException extends Exception {
 
 	public MuseumNotFoundException(String message){

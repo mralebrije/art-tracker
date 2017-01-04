@@ -1,5 +1,6 @@
-package com.sduran.api.web;
+package com.sduran.api;
 
+import com.sduran.api.web.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 

@@ -11,7 +11,6 @@ import org.jsondoc.core.annotation.ApiVersion;
 import org.jsondoc.core.pojo.ApiVisibility;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Getter
 @Setter

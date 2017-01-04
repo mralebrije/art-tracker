@@ -9,8 +9,6 @@ import org.jsondoc.core.annotation.ApiObjectField;
 import org.jsondoc.core.annotation.ApiVersion;
 import org.jsondoc.core.pojo.ApiVisibility;
 
-import java.util.List;
-
 @Getter
 @Setter
 @ToString
@@ -22,7 +20,7 @@ public class NewMuseumResponse extends BaseApiFormResponse {
 	@ApiObjectField(name = "id", description = "Id of added museum", required = true)
 	private Integer id;
 
-	public NewMuseumResponse(List<String> districts, long total) {
+	public NewMuseumResponse(Integer id) {
 		super();
 		this.id = id;
 	}

@@ -1,12 +1,12 @@
 package com.sduran.api.web.response;
 
 import com.sduran.api.web.resource.LocationBaseResource;
+import com.sun.jersey.api.client.GenericType;
 import lombok.Getter;
 import lombok.ToString;
 import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
-import com.sun.jersey.api.client.GenericType;
 
 import java.util.List;
 

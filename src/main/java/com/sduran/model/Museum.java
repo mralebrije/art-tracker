@@ -1,13 +1,11 @@
 package com.sduran.model;
 
-import com.sun.jersey.api.client.GenericType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
@@ -20,7 +18,6 @@ public class Museum implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(nullable = false)
     private int id;
 
     @Column(nullable = false)
