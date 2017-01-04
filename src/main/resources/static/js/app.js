@@ -95,7 +95,7 @@
             },
             hideGrid: false,
             error: false,
-            organizations: [],
+            organizations: [21201],
             selectedZip: '',
             positions: [],
             selectedOrganization: '',

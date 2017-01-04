@@ -157,9 +157,9 @@
             <properties>
                 <activatedProperties>local</activatedProperties>
                 <classifier>local</classifier>
-                <log.dir>/${project.artifactId}/local/logs</log.dir>
+                <log.dir>${env.TMP}/${project.artifactId}/local/logs</log.dir>
                 <log.file>${project.artifactId}-local.log</log.file>
-                <log.level>DEBUG</log.level>
+                <log.level>INFO</log.level>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -170,7 +170,7 @@
             <properties>
                 <activatedProperties>prod</activatedProperties>
                 <classifier>prod</classifier>
-                <log.dir>/${project.artifactId}/prod/logs</log.dir>
+                <log.dir>${env.TMP}/${project.artifactId}/prod/logs</log.dir>
                 <log.file>${project.artifactId}-prod.log</log.file>
                 <log.level>INFO</log.level>
             </properties>

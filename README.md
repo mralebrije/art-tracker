@@ -107,6 +107,6 @@ http://localhost:8080/art-tracker/jsondoc-ui.html
 * Press **Get documentation** button  
 * Press **Museum Services** or **Organization Services** link (located at left middle page) 
  
-## BONUS: Android App
+## BONUS: Android App (Coming soon)
 
 ![alt tag](http://impossiblesolitaire.com/wp-content/uploads/2015/09/available_google.png)
