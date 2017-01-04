@@ -101,7 +101,7 @@ Then you can execute the runnable JAR generated:
   
 ###### _run the tests within your IDE (see screenshot below)_
  
-    ![alt tag](https://dl.dropboxusercontent.com/s/8l7bpg4lc6g7a8p/run-tests.png)
+![alt tag](https://dl.dropboxusercontent.com/s/8l7bpg4lc6g7a8p/run-tests.png)
  
 ###### _run with maven Maven simply executing the following command within a terminal:_
   
