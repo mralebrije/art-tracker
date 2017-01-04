@@ -1,8 +1,31 @@
 # ART TRACKER (Baltimore City)
 
- Art Tracker shows location of museums within Baltimore City, this allows you to make **CRUD** operations, apply search, filters and ordering over museums.
- Also you can explore which other Art Organizations within Baltimore City are close to each museum selected and visualize them into a Google Map. By last you
-can visualize in a chart what are the zip codes zones with more museums and art organizations.
+ Art Tracker shows you the location of museums within Baltimore City, this application allows you to:
+ 
+  * Make **CRUD** operations over museums elements
+  * Apply searching, filtering and ordering over museums grid
+  * Hide and show museums grid
+  * Reload grid data
+  * Use pagination features
+  
+  ![alt tag](https://dl.dropbox.com/s/g3oz89f0hexb1c1/art-tracker-1.png)
+  
+ Also you can:
+ 
+  * Explore which other Art Organizations within Baltimore City are close to each museum selected
+  * Visualize details about each organization from list
+  * Visualize organizations position into a Google Map
+  
+  ![alt tag](https://dl.dropbox.com/s/g3oz89f0hexb1c1/art-tracker-2.png)
+ 
+ By last Art-Tracker shows you 2 charts showing you:
+ 
+  * The number of Museums and Art Organizations grouped By ZIP CODE in a bar chart
+  * The number of Museums located in each Baltimore council district in a polar area chart
+  * Some statistics about which council district or zip code contains more Museums and Art Organizations
+ 
+ ![alt tag](https://dl.dropbox.com/s/g3oz89f0hexb1c1/art-tracker-3.png)
+ ![alt tag](https://dl.dropbox.com/s/g3oz89f0hexb1c1/art-tracker-4.png)
  
 ## Why Art Tracker?
 
@@ -71,6 +94,21 @@ Then you can execute the runnable JAR generated:
  ```
   java -jar target/art-tracker-0.0.1-SNAPSHOT.jar
  ```
+ 
+## How to run integration tests?
+
+ To run your integration tests, you can either choose to:
+  
+###### _run the tests within your IDE (see screenshot below)_
+ 
+![alt tag](https://dl.dropboxusercontent.com/s/8l7bpg4lc6g7a8p/run-tests.png)
+ 
+###### _run with maven Maven simply executing the following command within a terminal:_
+  
+```
+ mvn integration-test
+```
+
 
 ## DB configuation
 
@@ -107,6 +145,6 @@ http://localhost:8080/art-tracker/jsondoc-ui.html
 * Press **Get documentation** button  
 * Press **Museum Services** or **Organization Services** link (located at left middle page) 
  
-## BONUS: Android App (Coming soon)
+## BONUS: Spring for Android App (Coming soon)
 
 ![alt tag](http://impossiblesolitaire.com/wp-content/uploads/2015/09/available_google.png)
