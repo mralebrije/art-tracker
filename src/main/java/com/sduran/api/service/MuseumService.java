@@ -5,6 +5,7 @@ import com.sduran.api.service.exception.MuseumNotFoundException;
 import com.sduran.api.web.request.MuseumRequest;
 import com.sduran.api.web.resource.MuseumResource;
 import com.sduran.model.Museum;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,13 @@ public class MuseumService {
     @Transactional(readOnly = false)
     public int createOrUpdateMuseum(final MuseumRequest museumRequest) {
 
-        Museum museum = museumRepository.findById(Integer.valueOf(museumRequest.getId()));
+        Museum museum = null;
+
+        if (!StringUtils.isBlank(museumRequest.getId())){
+            museum = museumRepository.findById(Integer.valueOf(museumRequest.getId()));
+        }
+
+
         if (museum == null) {
             museum = new Museum();
             LOG.info("Museum to create: {}", museumRequest.getName());

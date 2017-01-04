@@ -1,5 +1,5 @@
 (function() {
-    var artTrackerApp = angular.module('artTrackerApp', ['ngTouch', 'ui.grid', 'ui.grid.selection', 'ui.grid.pagination', 'ui.grid.edit', 'ui.bootstrap', 'schemaForm', 'ngMap', "chart.js"]);
+    var artTrackerApp = angular.module('artTrackerApp', ['ngTouch', 'ui.grid', 'ui.grid.pagination', 'ui.grid.edit', 'ui.bootstrap', 'schemaForm', 'ngMap', "chart.js"]);
 
     artTrackerApp.factory('ApiFactory', function($http) {
         return {
@@ -9,14 +9,14 @@
             postMuseum: function(data) {
                 return $http.post('/art-tracker/museum', data);
             },
-            deleteMuseum: function(data) {
-                return $http.delete('/art-tracker/museum' + '/' + data, {});
+            deleteMuseum: function(id) {
+                return $http.delete('/art-tracker/museum/' + id, {});
             },
-            getArtOrganizations: function(data) {
-                return $http.get('/art-tracker/organization' + '/' + data, {});
+            getArtOrganizations: function(id) {
+                return $http.get('/art-tracker/organization/' + id, {});
             },
-            getMOZipStatistics: function() {
-                return $http.get('/art-tracker/mo', {});
+            getZipCodeStatistics: function() {
+                return $http.get('/art-tracker/statistics/zip', {});
             }
         }
     });
@@ -55,7 +55,8 @@
                     },
                     {
                         name: 'Neighborhood',
-                        field: 'neighborhood'
+                        field: 'neighborhood',
+                        width: 140
                     },
                     {
                         name: 'Council District',
@@ -69,7 +70,8 @@
                     },
                     {
                         name: 'Address',
-                        field: 'address'
+                        field: 'address',
+                        width: 180
                     },
                     {
                         name: 'Actions',
@@ -81,14 +83,15 @@
                 ],
 
                 paginationPageSize: 10,
+                enablePaginationControls: false,
                 enableSorting: true,
-                multiSelect: true,
                 enableColumnMenus: true,
                 enableFiltering: true,
                 showGridFooter: true,
-                showColumnFooter: true,
+                showColumnFooter: false,
                 enableRowHashing: false,
-                rowHeight: 40
+                rowHeight: 40,
+                gridApi2: ''
             },
             hideGrid: false,
             error: false,
@@ -96,9 +99,9 @@
             selectedZip: '',
             positions: [],
             selectedOrganization: '',
-            labelsZipCode: [],
-            seriesZipCode: ['Museums', 'Art Organizations'],
-            dataZipCode: [],
+            zipCodeLabels: [],
+            zipCodeSeries: ['Museums', 'Art Organizations'],
+            zipCodeData: [],
             maxZipCode: '',
             maxZipCodeTotal: '',
             maxZipCodeMuseums: '',
@@ -115,13 +118,15 @@
             editMuseum: editMuseum,
             findOrganizations: findOrganizations,
             updateOrganizationInfo: updateOrganizationInfo,
-            retrieveMOZipStatistics: retrieveMOZipStatistics
+            retrieveZipCodeStatistics: retrieveZipCodeStatistics
         });
 
         function retrieveMuseums() {
             ApiFactory.getMuseums().then(
                 function(response) {
                     $scope.gridOptions.data = response.data.museums;
+
+                    $scope.gridApi2.core.refresh();
                 },
                 function(error) {
                     handleApiError(error);
@@ -140,11 +145,15 @@
                 }
             });
 
-            modalInstance.result.then(function(entity, isSuccess) {
+            modalInstance.result.then(function(transferData) {
 
-                if (isSuccess) {
-                    $scope.gridOptions.data.push(entity);
-                    alert("Museum added successfully");
+                if (transferData.isSuccess) {
+                    $scope.gridOptions.data.push(transferData.entity);
+                    swal(
+                        'Successful addition!',
+                        'Museum has added',
+                        'success'
+                    );
                 }
             });
 
@@ -168,10 +177,15 @@
                 }
             });
 
-            modalInstance.result.then(function(entity, isSuccess) {
+            modalInstance.result.then(function(transferData) {
 
-                if (isSuccess)
-                    alert("Museum edited successfully");
+                if (transferData.isSuccess){
+                    swal(
+                        'Successful edition!',
+                        'Museum has been updated',
+                        'success'
+                    );
+                    }
             });
 
         }
@@ -181,7 +195,11 @@
                 function(response) {
                     var i = $scope.gridOptions.data.indexOf(row.entity);
                     $scope.gridOptions.data.splice(i, 1);
-                    alert("Museum deleted successfully");
+                    swal(
+                        'Successful deletion!',
+                        'Museum has been removed',
+                        'success'
+                    );
                 },
                 function(error) {
                     handleApiError(error);
@@ -191,13 +209,28 @@
         function findOrganizations(row) {
             ApiFactory.getArtOrganizations(row.entity.zip_code).then(
                 function(response) {
-                    alert("There are " + response.data.total + " near Art Organizations!");
-                    $scope.organizations = response.data.organizations;
-                    $scope.selectedZip = row.entity.zip_code;
 
-                    updateOrganizationInfo($scope.organizations[0]);
+                    if (response.data.total > 0) {
 
-                    document.getElementById('section2').scrollIntoView();
+
+                        $scope.organizations = response.data.organizations;
+                        $scope.selectedZip = row.entity.zip_code;
+
+
+                        updateOrganizationInfo($scope.organizations[0]);
+
+
+                        swal(
+                            response.data.total + ' Art Organizations found!',
+                            'Great this museum is really close to other interesting art places that you can visit!',
+                            'success'
+                        );
+
+
+                    } else {
+                        swal('No nearby Art Organizations found');
+                    }
+
                 },
                 function(error) {
                     handleApiError(error);
@@ -206,30 +239,32 @@
 
         function updateOrganizationInfo(organization) {
             $scope.selectedOrganization = organization;
+
+
         }
 
-        function retrieveMOZipStatistics() {
-            ApiFactory.getMOZipStatistics().then(
+        function retrieveZipCodeStatistics() {
+            ApiFactory.getZipCodeStatistics().then(
                 function(response) {
 
                     var museumsAmountList = [];
                     var organizationsAmountList = [];
 
-                    angular.forEach(response.data.statisticsZipCodeList, function(zipCodeStatistic, key) {
-                        $scope.labelsZipCode.push(zipCodeStatistic.zip_code);
+                    angular.forEach(response.data.zipCodeStatisticsList, function(zipCodeStatistic, key) {
+                        $scope.zipCodeLabels.push(zipCodeStatistic.zip_code);
                         museumsAmountList.push(zipCodeStatistic.museums_count);
                         organizationsAmountList.push(zipCodeStatistic.organizations_count);
 
                     });
 
-                    $scope.dataZipCode.push(museumsAmountList);
-                    $scope.dataZipCode.push(organizationsAmountList);
+                    $scope.zipCodeData.push(museumsAmountList);
+                    $scope.zipCodeData.push(organizationsAmountList);
 
-                    $scope.maxZipCode = response.data.maxZipCode.zip_code ;
-                    $scope.maxZipCodeMuseums= response.data.maxZipCode.museums_count ;
-                    $scope.maxZipCodeOrganizations= response.data.maxZipCode.organizations_count;
+                    $scope.maxZipCode = response.data.maxZipCode.zip_code;
+                    $scope.maxZipCodeMuseums = response.data.maxZipCode.museums_count;
+                    $scope.maxZipCodeOrganizations = response.data.maxZipCode.organizations_count;
 
-                    $scope.maxZipCodeTotal= $scope.maxZipCodeMuseums + $scope.maxZipCodeOrganizations;
+                    $scope.maxZipCodeTotal = $scope.maxZipCodeMuseums + $scope.maxZipCodeOrganizations;
                 },
                 function(error) {
                     handleApiError(error);
@@ -237,7 +272,11 @@
         }
 
         function handleApiError(error) {
-            alert("Error in REST service")
+            swal(
+                'Oops...',
+                'Error in REST service call',
+                'error'
+            );
             if (error.config.errorCause === 1) {
                 //do something
             }
@@ -245,8 +284,13 @@
 
         function initialize() {
             $scope.error = false;
+
+            $scope.gridOptions.onRegisterApi = function(gridApi) {
+                $scope.gridApi2 = gridApi;
+            }
+
             retrieveMuseums();
-            retrieveMOZipStatistics();
+            retrieveZipCodeStatistics();
             reload();
         }
 
@@ -280,6 +324,7 @@
                 },
                 council_district: {
                     type: 'integer',
+                    minimum: 0,
                     title: 'Council District'
                 },
                 police_district: {
@@ -318,10 +363,14 @@
             ApiFactory.postMuseum(parameter).then(
                 function(response) {
                     row.entity = angular.extend(row.entity, vm.model);
-                    $modalInstance.close(vm.model, true);
+                    $modalInstance.close({entity:vm.model, isSuccess:true});
                 },
                 function(error) {
-                    alert("error");
+                    swal(
+                        'Oops...',
+                        'Error in REST service call',
+                        'error'
+                    );
                 });
         }
     }
@@ -345,6 +394,7 @@
                 },
                 council_district: {
                     type: 'integer',
+                    minimum: 0,
                     title: 'Council District'
                 },
                 police_district: {
@@ -381,10 +431,14 @@
             ApiFactory.postMuseum(parameter).then(
                 function(response) {
                     vm.model.id = response.id;
-                    $modalInstance.close(vm.model, true);
+                    $modalInstance.close({entity:vm.model, isSuccess:true});
                 },
                 function(error) {
-                    alert("error");
+                    swal(
+                        'Oops...',
+                        'Error in REST service call',
+                        'error'
+                    );
                 });
         }
     }

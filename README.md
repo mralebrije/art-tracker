@@ -25,9 +25,9 @@ can visualize in a chart what are the zip codes zones with more museums and art 
  **3. Third chance ~~(last chance,I have to be really careful selecting my next words to keep your attention in my code)~~:**
  
  _Are you a Talent hunter?..._
- _Are you looking for a committed and passionate worker in tour team?_  
+ _Are you looking for a committed and passionate worker in our team?_  
  
- I introduce myself with this code for you like first step, hoping to make **great things** together!
+ I use this code as first step to introduce myself with you, hoping to make **great things** together!
 
 ## Data sets
 
@@ -59,7 +59,7 @@ You can run this project using 2 profiles: **local**(_default_, using H2 DB), **
 You can run the application using maven configuration command:
 
 ```
-spring-boot:run.
+spring-boot:run
 ```
 
 Or you can build the JAR file with maven configuration command:
@@ -84,9 +84,9 @@ Then you can execute the runnable JAR generated:
 
 Review **application-prod.properties** file in oder to configure MySQL DB
 
- 1. Create **arttracker** scheme
+ 1. Create **arttracker** schema
  2. Set user DB credentials
- 3. Review DB url connection to: **jdbc:postgresql://localhost:8080/arttracker**
+ 3. Review DB url connection to: **jdbc:mysql://localhost:8080/arttracker**
  
 ## Visualization Web Art Tracker
 
@@ -94,12 +94,6 @@ Review **application-prod.properties** file in oder to configure MySQL DB
 
 * Navigate to link
 http://localhost:8080/art-tracker/
-
-### Access cloud WEB
-
-* Navigate to link
-http://link/art-tracker/
-
 
 ### Access JSONDoc
 

@@ -16,9 +16,9 @@ import java.io.Serializable;
 @Setter
 @ToString
 @ApiVersion(since = "1.0")
-@ApiObject(name = "MOStatisticsResource", description = "Resource object that stores statistics information about museums and organizations", group = ApiConstants.RESOURCE_OBJECT_GROUP, visibility = ApiVisibility.PUBLIC)
+@ApiObject(name = "StatisticsResource", description = "Resource object that stores statistics information about museums and organizations", group = ApiConstants.RESOURCE_OBJECT_GROUP, visibility = ApiVisibility.PUBLIC)
 @SuppressWarnings("serial")
-public class MOStatisticsResource implements Serializable {
+public class StatisticsResource implements Serializable {
 
     @ApiObjectField(name = "zip_code", description = "Zip code (Postal code)")
     @JsonProperty("zip_code")

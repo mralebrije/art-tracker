@@ -2,10 +2,7 @@ package com.sduran.api.service;
 
 import com.sduran.api.repository.MuseumRepository;
 import com.sduran.api.repository.OrganizationRepository;
-import com.sduran.api.web.resource.MOStatisticsResource;
-import com.sduran.api.web.resource.OrganizationResource;
-import com.sduran.api.web.response.MOStatisticsResponse;
-import com.sduran.model.Organization;
+import com.sduran.api.web.resource.StatisticsResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MOService {
+public class StatisticsService {
 
     @Autowired
     private OrganizationRepository organizationRepository;
@@ -24,7 +21,7 @@ public class MOService {
     private MuseumRepository museumRepository;
 
     @Transactional(readOnly = true)
-    public List<MOStatisticsResource> findZipCodeStatistics() {
+    public List<StatisticsResource> findZipCodeStatistics() {
 
         final String method = "findZipCodeStatistics";
 
@@ -33,24 +30,24 @@ public class MOService {
         List<String> museumZipCodes = museumRepository.findDistinctZipCodes();
         List<String> organizationsZipCodes = organizationRepository.findDistinctZipCodes();
 
-        List<String> moZipCodes = mergeMOZipCodes(museumZipCodes, organizationsZipCodes);
+        List<String> zipCodeStatisticsList = mergeZipCodesList(museumZipCodes, organizationsZipCodes);
 
-        List<MOStatisticsResource> statisticsList = new ArrayList<>();
+        List<StatisticsResource> statisticsList = new ArrayList<>();
 
-        for (String zipCode : moZipCodes){
-            MOStatisticsResource moStatisticsResource = new MOStatisticsResource();
-            populateMOStatistics(zipCode, moStatisticsResource);
-            statisticsList.add(moStatisticsResource);
+        for (String zipCode : zipCodeStatisticsList){
+            StatisticsResource statisticsResource = new StatisticsResource();
+            populateZipCodeStatistics(zipCode, statisticsResource);
+            statisticsList.add(statisticsResource);
         }
 
         return statisticsList;
     }
 
-    public MOStatisticsResource findMaxZipCode(List<MOStatisticsResource> list) {
+    public StatisticsResource findMaxZipCode(List<StatisticsResource> list) {
         long max = -1;
-        MOStatisticsResource zipCodeWithMoreAmount = new MOStatisticsResource();
+        StatisticsResource zipCodeWithMoreAmount = new StatisticsResource();
 
-        for (MOStatisticsResource item : list){
+        for (StatisticsResource item : list){
             long tmpMax = item.getMuseumsCount() + item.getOrganizationsCount();
             if (tmpMax > max){
                 max =tmpMax;
@@ -62,13 +59,13 @@ public class MOService {
 
     }
 
-    private void populateMOStatistics(String zipCode, MOStatisticsResource moStatisticsResource) {
-        moStatisticsResource.setZipCode(zipCode);
-        moStatisticsResource.setMuseumsCount(museumRepository.countByZipCode(zipCode));
-        moStatisticsResource.setOrganizationsCount(organizationRepository.countByZipCode(zipCode));
+    private void populateZipCodeStatistics(String zipCode, StatisticsResource statisticsResource) {
+        statisticsResource.setZipCode(zipCode);
+        statisticsResource.setMuseumsCount(museumRepository.countByZipCode(zipCode));
+        statisticsResource.setOrganizationsCount(organizationRepository.countByZipCode(zipCode));
     }
 
-    private List<String> mergeMOZipCodes(List<String> museumZipCodes, List<String> organizationsZipCodes) {
+    private List<String> mergeZipCodesList(List<String> museumZipCodes, List<String> organizationsZipCodes) {
 
         List<String> moZipCodes = museumZipCodes;
 
@@ -82,7 +79,7 @@ public class MOService {
     }
 
 
-    private static final Logger LOG = LoggerFactory.getLogger(MOService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(StatisticsService.class);
 
 
 }

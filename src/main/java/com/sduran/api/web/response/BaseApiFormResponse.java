@@ -16,7 +16,6 @@ import java.util.List;
 @Setter
 @ApiVersion(since = "1.0")
 @ApiObject(name = "BaseApiFormResponse", description = "Response object that stores errors about fields", group = ApiConstants.RESPONSE_OBJECT_GROUP, visibility = ApiVisibility.PUBLIC)
-@SuppressWarnings("serial")
 public class BaseApiFormResponse {
 
 	@JsonInclude(JsonInclude.Include.NON_EMPTY)

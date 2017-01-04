@@ -22,8 +22,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class MuseumRequest implements Serializable {
 
-    @ApiObjectField(name = "id", description = "Museum id", required = true)
-    @NotEmpty
+    @ApiObjectField(name = "id", description = "Museum id", required = false)
     private String id;
 
     @ApiObjectField(name = "name", description = "Museum name", required = true)
