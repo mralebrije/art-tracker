@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+@SuppressWarnings("unused")
 @SpringBootApplication
 @EnableAutoConfiguration
 @EnableJSONDoc

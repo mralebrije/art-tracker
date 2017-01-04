@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+@SuppressWarnings("unused")
 @Api(name = "Art Organization Services", description = "Methods to manage art organizations", visibility = ApiVisibility.PUBLIC, group = ApiConstants.ORGANIZATION_GROUP)
 @ApiVersion(since = "1.0")
 @RestController

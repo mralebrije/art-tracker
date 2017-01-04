@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 @Api(name = "Museums and Art Organizations Statistics Services", description = "Methods to manage art organizations and museums statistics", visibility = ApiVisibility.PUBLIC, group = ApiConstants.STATISTICS_GROUP)
 @ApiVersion(since = "1.0")
 @RestController
