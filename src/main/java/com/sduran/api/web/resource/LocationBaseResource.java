@@ -16,7 +16,6 @@ import org.jsondoc.core.pojo.ApiVisibility;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiVersion(since = "1.0")
 @ApiObject(name = "LocationBaseResource", description = "Resource object that stores a location", group = ApiConstants.RESOURCE_OBJECT_GROUP, visibility = ApiVisibility.PUBLIC)
-@SuppressWarnings("serial")
 public class LocationBaseResource {
 
  @JsonProperty("human_address")

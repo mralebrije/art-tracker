@@ -1,9 +1,13 @@
+dd{
+	margin-bottom: 5px;
+}
+
 .banner {
     width: 100%;
 }
 
 .body-container {
-    padding: 20px;
+    padding: 10px;
     font-size: 85%;
 }
 .table-container {} .navbar {
@@ -11,6 +15,7 @@
     background-color: #26c3ff !important;
     margin-bottom: 0;
 }
+
 .organizations-container {
     background: #EEE;
     width: 100%;
@@ -22,31 +27,33 @@
     background: #fafafa;
 }
 
-.summaryChart {
-    height: 100% !important;
-    width: 100% !important;
-    display: table !important;
-    margin: 0 auto !important;
-}
 
 .organizationSummaryContainer {
-    padding: 15px;
+    padding: 5px;
     background-color: #26c3ff !important;
     float: left;
     height: 100%;
     width: 50%;
     overflow: auo;
 }
+.organizationEmptySummaryContainer {
+    padding: 25px;
+    background-color: #E6E6FA !important;
+    float: left;
+    height: 100%;
+    width: 50%;
+    overflow: auo;
+}
 .organizationMapContainer {
-    background-color: #80E6E6FA !important;
+    background-color: #E6E6FA !important;
     float: right;
     height: 100%;
     width: 50%;
 }
 .organizationList {
-    overflow: hidden;
-    overflow-y: scroll;
-    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 90%;
     width: 50%;
     float: left;
 }
@@ -59,7 +66,6 @@
 .textInfo {
     padding: 15px !important;
     background-color: white !important;
-
 }
 .organizationMap {
     height: 100%;
@@ -68,10 +74,7 @@
     color: white !important;
     font-weight: bold;
 }
-.myGrid {
-    width: 1200px;
-    height: 800px;
-}
+
 .white-icon {
     color: white !important;
 }
@@ -79,18 +82,8 @@
     color: #D3D3D3 !important;
 }
 
-/**
- * Extra large button extensions. Extends `.btn`.
- */
-
 .btn-customized {
-    margin: 5px;
-    padding: 14px 24px;
-    font-size: 14px;
-    line-height: normal;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+    margin: 3px;
 }
 th {
     text-align: center;
@@ -103,9 +96,6 @@ h4 {
     margin 0px;
     color: white;
     font-weight: bold;
-}
-h5{
-    font-size: 16px !important;
 }
 .purple {
     color: black;
@@ -128,4 +118,12 @@ h5{
 
 .chart-text {
     font-size: 22px !important;
+}
+
+.list-group {
+    margin-bottom: 5px !important;
+}
+
+.dl {
+    font-size: 14px !important;
 }
