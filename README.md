@@ -16,7 +16,7 @@
   * Visualize details about each organization from list
   * Visualize organizations position into a Google Map
   
-  ![alt tag](https://dl.dropbox.com/s/g3oz89f0hexb1c1/art-tracker-2.png)
+  ![alt tag](https://dl.dropbox.com/s/1oe8vs5wolmw3vk/art-tracker-2.png)
  
  By last Art-Tracker shows you 2 charts showing you:
  
@@ -24,8 +24,8 @@
   * The number of Museums located in each Baltimore council district in a polar area chart
   * Some statistics about which council district or zip code contains more Museums and Art Organizations
  
- ![alt tag](https://dl.dropbox.com/s/g3oz89f0hexb1c1/art-tracker-3.png)
- ![alt tag](https://dl.dropbox.com/s/g3oz89f0hexb1c1/art-tracker-4.png)
+ ![alt tag](https://dl.dropbox.com/s/thuki9o0hf77u66/art-tracker-3.png)
+ ![alt tag](https://dl.dropbox.com/s/soepi0kozc8zz48/art-tracker-4.png)
  
 ## Why Art Tracker?
 
@@ -144,6 +144,8 @@ http://localhost:8080/art-tracker/jsondoc-ui.html
 * Write **jsondoc** in text box  
 * Press **Get documentation** button  
 * Press **Museum Services** or **Organization Services** link (located at left middle page) 
+ 
+![alt tag]( https://dl.dropbox.com/s/yc3mouej25t2gbk/art-tracker-5.png)
  
 ## BONUS: Spring for Android App (Coming soon)
 
