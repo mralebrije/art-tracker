@@ -83,7 +83,7 @@
 
                 <div class="organizationList ">
                     <ul class="list-group" ng-repeat="organization in organizations">
-                        <a ng-click="updateOrganizationInfo(organization)" class="list-group-item list-group-item-info">
+                        <a href="javascript:;" ng-click="updateOrganizationInfo(organization)" class="list-group-item list-group-item-info">
                             <h5><i class="fa fa-map-marker white-icon"></i> {{organization.organization}}</h5>
                         </a>
                     </ul>
@@ -93,16 +93,16 @@
                     <div class="textInfo">
 
                         <dl class="dl">
-                            <dt><i class="fa fa-home" aria-hidden="true"></i>
+                            <dt><i class="fa fa-fw fa-home" aria-hidden="true"></i>
                                 Name</dt>
                             <dd>{{selectedOrganization.organization}}</dd>
-                            <dt><i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            <dt><i class="fa fa-fw fa-location-arrow" aria-hidden="true"></i>
                                 Address</dt>
                             <dd>{{selectedOrganization.address}}</dd>
-                            <dt><i class="fa fa-link" aria-hidden="true"></i>
+                            <dt><i class="fa fa-fw fa-link" aria-hidden="true"></i>
                                 Website</dt>
                             <dd>{{selectedOrganization.url}}</dd>
-                            <dt><i class="fa fa-map-marker" aria-hidden="true"></i>Position</dt>
+                            <dt><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i>Position</dt>
                             <dd>{{selectedOrganization.latitude}} , {{selectedOrganization.longitude}}</dd>
                         </dl>
 
@@ -111,7 +111,7 @@
             </div>
 
             <div ng-hide="!hideOrganizations" class="organizationEmptySummaryContainer">
-                <h4 >Press "Find art around!" button in some above museum table</h4>
+                <h5>*Press "Find art around!" button in some above museum table</h5>
             </div>
 
             <div id="map" class="organizationMapContainer">
@@ -152,7 +152,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="navbar-footer">
-                <div class="col-md-7 col-md-offset-1">
+                <div class="col-md-12 text-center">
                     <h4 class="white-text">Developer: Sergio Daniel Durán (serch_sddm@outlook.com) - <a target="_blank" href="https://github.com/serchduran/art-tracker"><i
                             class="fa fa-github fa-3x white-icon"></i></a></h4>
                 </div>

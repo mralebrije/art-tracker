@@ -1,3 +1,7 @@
+dd{
+	margin-bottom: 5px;
+}
+
 .banner {
     width: 100%;
 }
@@ -47,8 +51,8 @@
     width: 50%;
 }
 .organizationList {
-    overflow: hidden;
-    overflow-y: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
     height: 90%;
     width: 50%;
     float: left;
