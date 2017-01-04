@@ -115,7 +115,7 @@
             </div>
 
             <div id="map" class="organizationMapContainer">
-                <map class="organizationMap" center="39.299236, -76.609383" zoom="13">
+                <map class="organizationMap" center="{{mapCenter}}" zoom="11">
                     <marker ng-repeat="organization in organizations"
                             position="{{organization.latitude}}, {{organization.longitude}}"></marker>
                 </map>

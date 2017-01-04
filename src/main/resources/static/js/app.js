@@ -116,7 +116,8 @@
             councilDistrictLabels: [],
             councilDistrictData: [],
             maxCouncilDistrict: '',
-            maxCouncilDistrictMuseums: ''
+            maxCouncilDistrictMuseums: '',
+            mapCenter: '39.299236, -76.609383'
 
         });
 
@@ -240,6 +241,7 @@
 
                         $scope.hideOrganizations = false;
 
+                        $scope.mapCenter= $scope.organizations[0].latitude + ',' + $scope.organizations[0].longitude ;
 
                     } else {
                         swal('No nearby Art Organizations found');
