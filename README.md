@@ -1,6 +1,6 @@
 # ART TRACKER (Baltimore City)
 
- Art Tracker shows you the location of museums within Baltimore City, this application allows you to:
+Art Tracker shows you the location of museums within Baltimore City, this application **allows you to:**
  
   * Make **CRUD** operations over museums elements
   * Apply searching, filtering and ordering over museums grid
@@ -10,7 +10,7 @@
   
   ![alt tag](https://dl.dropbox.com/s/g3oz89f0hexb1c1/art-tracker-1.png)
   
- Also you can:
+**Also you can:**
  
   * Explore which other Art Organizations within Baltimore City are close to each museum selected
   * Visualize details about each organization from list
@@ -18,14 +18,14 @@
   
   ![alt tag](https://dl.dropbox.com/s/1oe8vs5wolmw3vk/art-tracker-2.png)
  
- By last Art-Tracker shows you 2 charts showing you:
+**By last Art-Tracker shows you 2 charts showing you:**
  
   * The number of Museums and Art Organizations grouped By ZIP CODE in a bar chart
   * The number of Museums located in each Baltimore council district in a polar area chart
   * Some statistics about which council district or zip code contains more Museums and Art Organizations
  
- ![alt tag](https://dl.dropbox.com/s/thuki9o0hf77u66/art-tracker-3.png)
- ![alt tag](https://dl.dropbox.com/s/soepi0kozc8zz48/art-tracker-4.png)
+  ![alt tag](https://dl.dropbox.com/s/thuki9o0hf77u66/art-tracker-3.png)
+  ![alt tag](https://dl.dropbox.com/s/soepi0kozc8zz48/art-tracker-4.png)
  
 ## Why Art Tracker?
 
@@ -101,7 +101,7 @@ Then you can execute the runnable JAR generated:
   
 ###### _run the tests within your IDE (see screenshot below)_
  
-![alt tag](https://dl.dropboxusercontent.com/s/8l7bpg4lc6g7a8p/run-tests.png)
+    ![alt tag](https://dl.dropboxusercontent.com/s/8l7bpg4lc6g7a8p/run-tests.png)
  
 ###### _run with maven Maven simply executing the following command within a terminal:_
   
@@ -145,7 +145,7 @@ http://localhost:8080/art-tracker/jsondoc-ui.html
 * Press **Get documentation** button  
 * Press **Museum Services** or **Organization Services** link (located at left middle page) 
  
-![alt tag]( https://dl.dropbox.com/s/yc3mouej25t2gbk/art-tracker-5.png)
+    ![alt tag]( https://dl.dropbox.com/s/yc3mouej25t2gbk/art-tracker-5.png)
  
 ## BONUS: Spring for Android App (Coming soon)
 
