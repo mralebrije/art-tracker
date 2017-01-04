@@ -131,7 +131,7 @@ Review **application-prod.properties** file in oder to configure MySQL DB
 ### Access local WEB
 
 * Navigate to link
-http://localhost:8080/art-tracker/
+[http://localhost:8080/art-tracker/]()
 
 ### Access JSONDoc
 
@@ -140,10 +140,10 @@ http://localhost:8080/art-tracker/
  You can use JSONDoc in order to visualize API documentation, also you are able to use the http client in order to consume and test each endpoint available.
  
 * Navigate to link
-http://localhost:8080/art-tracker/jsondoc-ui.html  
+[http://localhost:8080/art-tracker/jsondoc-ui.html]()
 * Write **jsondoc** in text box  
 * Press **Get documentation** button  
-* Press **Museum Services** or **Organization Services** link (located at left middle page) 
+* Press **Museum Services** , **Organization Services** or **Statistics Services** link (located at left middle page) 
  
     ![alt tag]( https://dl.dropbox.com/s/yc3mouej25t2gbk/art-tracker-5.png)
  
