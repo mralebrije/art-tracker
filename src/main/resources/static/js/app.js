@@ -4,19 +4,22 @@
     artTrackerApp.factory('ApiFactory', function($http) {
         return {
             getMuseums: function() {
-                return $http.get('/art-tracker/museum', {});
+                return $http.get('/art-tracker/museum');
             },
             postMuseum: function(data) {
                 return $http.post('/art-tracker/museum', data);
             },
             deleteMuseum: function(id) {
-                return $http.delete('/art-tracker/museum/' + id, {});
+                return $http.delete('/art-tracker/museum/' + id);
             },
             getArtOrganizations: function(id) {
-                return $http.get('/art-tracker/organization/' + id, {});
+                return $http.get('/art-tracker/organization/' + id);
             },
             getZipCodeStatistics: function() {
-                return $http.get('/art-tracker/statistics/zip', {});
+                return $http.get('/art-tracker/statistics/zip');
+            },
+            getCouncilDistrictStatistics: function() {
+                return $http.get('/art-tracker/statistics/council');
             }
         }
     });
@@ -95,7 +98,10 @@
             },
             hideGrid: false,
             error: false,
-            organizations: [21201],
+            organizations: [{
+                latitude: 39.299236,
+                longitude: -76.609383
+            }],
             selectedZip: '',
             positions: [],
             selectedOrganization: '',
@@ -106,7 +112,11 @@
             maxZipCodeTotal: '',
             maxZipCodeMuseums: '',
             maxZipCodeOrganizations: '',
-            hideOrganizations: true
+            hideOrganizations: true,
+            councilDistrictLabels: [],
+            councilDistrictData: [],
+            maxCouncilDistrict: '',
+            maxCouncilDistrictMuseums: ''
 
         });
 
@@ -119,7 +129,8 @@
             editMuseum: editMuseum,
             findOrganizations: findOrganizations,
             updateOrganizationInfo: updateOrganizationInfo,
-            retrieveZipCodeStatistics: retrieveZipCodeStatistics
+            retrieveZipCodeStatistics: retrieveZipCodeStatistics,
+            retrieveCouncilDistrictStatistics: retrieveCouncilDistrictStatistics
         });
 
         function retrieveMuseums() {
@@ -274,6 +285,24 @@
                 });
         }
 
+        function retrieveCouncilDistrictStatistics() {
+            ApiFactory.getCouncilDistrictStatistics().then(
+                function(response) {
+
+                    angular.forEach(response.data.councilStatisticsList, function(councilStatistic, key) {
+                        $scope.councilDistrictData.push(councilStatistic.museums_count);
+                        $scope.councilDistrictLabels.push('Museums');
+                    });
+
+                    $scope.maxCouncilDistrict = response.data.maxCouncil.council_district;
+                    $scope.maxCouncilDistrictMuseums = response.data.maxCouncil.museums_count;
+
+                },
+                function(error) {
+                    handleApiError(error);
+                });
+        }
+
         function handleApiError(error) {
             swal(
                 'Oops...',
@@ -294,6 +323,7 @@
 
             retrieveMuseums();
             retrieveZipCodeStatistics();
+            retrieveCouncilDistrictStatistics();
             reload();
         }
 

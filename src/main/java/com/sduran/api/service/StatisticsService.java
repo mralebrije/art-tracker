@@ -2,7 +2,8 @@ package com.sduran.api.service;
 
 import com.sduran.api.repository.MuseumRepository;
 import com.sduran.api.repository.OrganizationRepository;
-import com.sduran.api.web.resource.StatisticsResource;
+import com.sduran.api.web.resource.CouncilStatisticsResource;
+import com.sduran.api.web.resource.ZipCodeStatisticsResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class StatisticsService {
     private MuseumRepository museumRepository;
 
     @Transactional(readOnly = true)
-    public List<StatisticsResource> findZipCodeStatistics() {
+    public List<ZipCodeStatisticsResource> findZipCodeStatistics() {
 
         final String method = "findZipCodeStatistics";
 
@@ -32,22 +33,22 @@ public class StatisticsService {
 
         List<String> zipCodeStatisticsList = mergeZipCodesList(museumZipCodes, organizationsZipCodes);
 
-        List<StatisticsResource> statisticsList = new ArrayList<>();
+        List<ZipCodeStatisticsResource> statisticsList = new ArrayList<>();
 
         for (String zipCode : zipCodeStatisticsList){
-            StatisticsResource statisticsResource = new StatisticsResource();
-            populateZipCodeStatistics(zipCode, statisticsResource);
-            statisticsList.add(statisticsResource);
+            ZipCodeStatisticsResource zipCodeStatisticsResource = new ZipCodeStatisticsResource();
+            populateZipCodeStatistics(zipCode, zipCodeStatisticsResource);
+            statisticsList.add(zipCodeStatisticsResource);
         }
 
         return statisticsList;
     }
 
-    public StatisticsResource findMaxZipCode(List<StatisticsResource> list) {
+    public ZipCodeStatisticsResource findMaxZipCode(List<ZipCodeStatisticsResource> list) {
         long max = -1;
-        StatisticsResource zipCodeWithMoreAmount = new StatisticsResource();
+        ZipCodeStatisticsResource zipCodeWithMoreAmount = new ZipCodeStatisticsResource();
 
-        for (StatisticsResource item : list){
+        for (ZipCodeStatisticsResource item : list){
             long tmpMax = item.getMuseumsCount() + item.getOrganizationsCount();
             if (tmpMax > max){
                 max =tmpMax;
@@ -59,10 +60,51 @@ public class StatisticsService {
 
     }
 
-    private void populateZipCodeStatistics(String zipCode, StatisticsResource statisticsResource) {
-        statisticsResource.setZipCode(zipCode);
-        statisticsResource.setMuseumsCount(museumRepository.countByZipCode(zipCode));
-        statisticsResource.setOrganizationsCount(organizationRepository.countByZipCode(zipCode));
+    @Transactional(readOnly = true)
+    public List<CouncilStatisticsResource> findCouncilStatistics() {
+
+        final String method = "findCouncilStatistics";
+
+        LOG.info("{}, Searching for statistics using council district", method);
+
+        List<Integer> museumCouncilDistrict = museumRepository.findDistinctCouncilDistrict();
+        List<CouncilStatisticsResource> statisticsList = new ArrayList<>();
+
+        for (Integer councilDistrict : museumCouncilDistrict){
+            CouncilStatisticsResource councilStatisticsResource = new CouncilStatisticsResource();
+            populateCouncilStatistics(councilDistrict, councilStatisticsResource);
+            statisticsList.add(councilStatisticsResource);
+        }
+
+        return statisticsList;
+    }
+
+    public CouncilStatisticsResource findMaxCouncil(List<CouncilStatisticsResource> list) {
+        long max = -1;
+        CouncilStatisticsResource councilWithMoreAmount = new CouncilStatisticsResource();
+
+        for (CouncilStatisticsResource item : list){
+            long tmpMax = item.getMuseumsCount();
+            if (tmpMax > max){
+                max =tmpMax;
+                councilWithMoreAmount = item;
+            }
+        }
+
+        return councilWithMoreAmount;
+
+    }
+
+    private void populateCouncilStatistics(Integer councilDistrict, CouncilStatisticsResource councilStatisticsResource) {
+
+        councilStatisticsResource.setCouncilDistrict(councilDistrict);
+        councilStatisticsResource.setMuseumsCount(museumRepository.countByCouncilDistrict(councilDistrict));
+    }
+
+    private void populateZipCodeStatistics(String zipCode, ZipCodeStatisticsResource zipCodeStatisticsResource) {
+        zipCodeStatisticsResource.setZipCode(zipCode);
+        zipCodeStatisticsResource.setMuseumsCount(museumRepository.countByZipCode(zipCode));
+        zipCodeStatisticsResource.setOrganizationsCount(organizationRepository.countByZipCode(zipCode));
     }
 
     private List<String> mergeZipCodesList(List<String> museumZipCodes, List<String> organizationsZipCodes) {

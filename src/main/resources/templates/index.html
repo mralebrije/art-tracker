@@ -58,7 +58,7 @@
         <button type="button" id="addData" class="btn btn-info btn-customized" ng-click="addMuseum()">Add Museum
         </button>
 
-        <a href="#section3" type="button" class="btn btn-success btn-customized"> Show statistics</a>
+        <a href="#section3" type="button" class="btn btn-success btn-customized"> Go to statistics</a>
         <br/><br/><br/>
 
 
@@ -77,7 +77,7 @@
             <br/><br/><br/>
         </div>
 
-        <div  id="section2" class="organizations-container">
+        <div id="section2" class="organizations-container">
             <div ng-hide="hideOrganizations" class="organizationSummaryContainer">
                 <h4 class="white-text"><i class="fa fa-building white-icon"></i> {{organizations.length}} Art Organizations found with ZIP CODE: {{selectedZip}}</h4>
 
@@ -89,7 +89,7 @@
                     </ul>
                 </div>
                 <div class="organizationInfoContainer">
-                    <h4 class="white-text">Organization information:</h4>
+                    <h5 class="white-text">Details</h5>
                     <div class="textInfo">
 
                         <dl class="dl">
@@ -111,7 +111,7 @@
             </div>
 
             <div ng-hide="!hideOrganizations" class="organizationEmptySummaryContainer">
-                <h5>*Press "Find art around!" button in some above museum table</h5>
+                <h5>*Press "Find art around!" button in any row of the museum grid.</h5>
             </div>
 
             <div id="map" class="organizationMapContainer">
@@ -140,7 +140,26 @@
             </div>
 
 
-            <canvas class="chart chart--bar ng-isolate-scope" height="250px" width="800px" chart-data="zipCodeData" chart-labels="zipCodeLabels" chart-series="zipCodeSeries">
+            <canvas class="chart chart-bar ng-isolate-scope" height="250px" width="800px" chart-data="zipCodeData" chart-labels="zipCodeLabels" chart-series="zipCodeSeries">
+            </canvas>
+            <br/><br/><br/>
+        </div>
+
+        <div id="section4" class="chart-container">
+            <div class="navbar">
+                <h4 class="white-text"><i class="fa fa-dot-circle-o white-icon"></i> Museums By COUNCIL DISTRICT
+
+                </h4>
+            </div>
+
+            <div class="textInfo">
+                <h5 class="bold-text-blue">COUNCIL DISTRICT {{maxCouncilDistrict}}</h5>
+                <h5 class="bold-text">with a total of {{maxCouncilDistrictMuseums}} museums is the most populated museum area in Baltimore </h5>
+                <h5>*Below chart shows the number of museums found by each council district: </h5>
+            </div>
+
+
+            <canvas class="chart chart-polar-area ng-isolate-scope" height="250px" width="800px" chart-data="councilDistrictData" chart-labels="councilDistrictLabels" chart-series="councilDistrictSeries">
             </canvas>
             <br/><br/><br/>
         </div>

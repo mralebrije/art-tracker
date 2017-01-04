@@ -22,4 +22,10 @@ public interface MuseumRepository extends JpaRepository<Museum, Long> {
 
     @Query(value = "select COUNT(*) from museum where zip_code = ?1 ;", nativeQuery = true)
     Long countByZipCode(String zipCode);
+
+    @Query(value = "select DISTINCT council_district from museum;", nativeQuery = true)
+    List<Integer> findDistinctCouncilDistrict();
+
+    @Query(value = "select COUNT(*) from museum where council_district = ?1 ;", nativeQuery = true)
+    Long countByCouncilDistrict(Integer councilDistrict);
 }
