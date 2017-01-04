@@ -18,7 +18,7 @@ can visualize in a chart what are the zip codes zones with more museums and art 
  
  _Are you a software developer?..._ 
  _Are you looking for a Java Full Stack Project example?..._
- _RESTful, services, controllers, ORM, angular, spring, hibernate, loombok, mysql, h2 are words that you have in mind?_ 
+ _RESTful, services, controllers, ORM, angular, spring, hibernate, loombok, mysql, h2, integration testing are words that you have in mind?_ 
   
   Perfect you can explore this code and love it or hate it ~~(as well as me these nights)~~. 
   
@@ -36,7 +36,7 @@ can visualize in a chart what are the zip codes zones with more museums and art 
  * Baltimore Arts Organizations (https://data.baltimorecity.gov/Culture-Arts/Baltimore-Arts-Organizations/r4ur-u5nm)
  * Museums (https://data.baltimorecity.gov/Culture-Arts/Museums/8hgq-9pi6)
  
-## Entire development stack
+## Development stack
  
  * [Java](https://www.java.com/)
  * [Angular](https://angularjs.org), [Spring](http://docs.spring.io/), [Spring boot](http://docs.spring.io/spring-boot/), [Hibernate](http://projects.spring.io/spring-data/) 
@@ -45,7 +45,7 @@ can visualize in a chart what are the zip codes zones with more museums and art 
  * [ORM](hibernate.org/orm/what-is-an-orm/), [MVC](https://www.tutorialspoint.com/mvc.../)
  * [Socrata SODA API](https://github.com/socrata/soda-java/), [Google Maps API](https://developers.google.com/maps/)
  * [ui-grid](http://ui-grid.info/docs/), [angular schema form](https://github.com/json-schema-form/angular-schema-form), [Angular Chart](https://jtblin.github.io/angular-chart.js/)
-
+ * [REST-assured ](https://github.com/rest-assured/rest-assured)
 
 ## How to run?
 
