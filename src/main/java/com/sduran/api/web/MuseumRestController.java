@@ -4,7 +4,6 @@ import com.sduran.api.constants.ApiConstants;
 import com.sduran.api.service.MuseumService;
 import com.sduran.api.service.exception.MuseumNotFoundException;
 import com.sduran.api.web.request.MuseumRequest;
-import com.sduran.api.web.response.BaseApiFormResponse;
 import com.sduran.api.web.response.DistrictsSearchResponse;
 import com.sduran.api.web.response.MuseumsSearchResponse;
 import com.sduran.api.web.response.NewMuseumResponse;

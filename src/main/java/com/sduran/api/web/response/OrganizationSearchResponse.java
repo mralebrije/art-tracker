@@ -1,7 +1,6 @@
 package com.sduran.api.web.response;
 
 import com.sduran.api.constants.ApiConstants;
-import com.sduran.api.web.resource.MuseumResource;
 import com.sduran.api.web.resource.OrganizationResource;
 import lombok.Getter;
 import lombok.Setter;

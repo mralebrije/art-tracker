@@ -2,14 +2,11 @@ package com.sduran.api.web;
 
 import com.sduran.api.constants.ApiConstants;
 import com.sduran.api.service.OrganizationService;
-import com.sduran.api.service.exception.MuseumNotFoundException;
-import com.sduran.api.web.request.MuseumRequest;
-import com.sduran.api.web.response.DistrictsSearchResponse;
-import com.sduran.api.web.response.MuseumsSearchResponse;
-import com.sduran.api.web.response.NewMuseumResponse;
 import com.sduran.api.web.response.OrganizationSearchResponse;
-import com.sduran.api.web.validator.MuseumValidator;
-import org.jsondoc.core.annotation.*;
+import org.jsondoc.core.annotation.Api;
+import org.jsondoc.core.annotation.ApiMethod;
+import org.jsondoc.core.annotation.ApiPathParam;
+import org.jsondoc.core.annotation.ApiVersion;
 import org.jsondoc.core.pojo.ApiVerb;
 import org.jsondoc.core.pojo.ApiVisibility;
 import org.slf4j.Logger;
@@ -18,9 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @Api(name = "Art Organization Services", description = "Methods to manage art organizations", visibility = ApiVisibility.PUBLIC, group = ApiConstants.ORGANIZATION_GROUP)
 @ApiVersion(since = "1.0")

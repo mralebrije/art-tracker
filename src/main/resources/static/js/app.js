@@ -105,7 +105,8 @@
             maxZipCode: '',
             maxZipCodeTotal: '',
             maxZipCodeMuseums: '',
-            maxZipCodeOrganizations: ''
+            maxZipCodeOrganizations: '',
+            hideOrganizations: true
 
         });
 
@@ -179,13 +180,13 @@
 
             modalInstance.result.then(function(transferData) {
 
-                if (transferData.isSuccess){
+                if (transferData.isSuccess) {
                     swal(
                         'Successful edition!',
                         'Museum has been updated',
                         'success'
                     );
-                    }
+                }
             });
 
         }
@@ -225,6 +226,8 @@
                             'Great this museum is really close to other interesting art places that you can visit!',
                             'success'
                         );
+
+                        $scope.hideOrganizations = false;
 
 
                     } else {
@@ -363,7 +366,10 @@
             ApiFactory.postMuseum(parameter).then(
                 function(response) {
                     row.entity = angular.extend(row.entity, vm.model);
-                    $modalInstance.close({entity:vm.model, isSuccess:true});
+                    $modalInstance.close({
+                        entity: vm.model,
+                        isSuccess: true
+                    });
                 },
                 function(error) {
                     swal(
@@ -430,8 +436,11 @@
 
             ApiFactory.postMuseum(parameter).then(
                 function(response) {
-                    vm.model.id = response.id;
-                    $modalInstance.close({entity:vm.model, isSuccess:true});
+                    vm.model.id = response.data.id;
+                    $modalInstance.close({
+                        entity: vm.model,
+                        isSuccess: true
+                    });
                 },
                 function(error) {
                     swal(

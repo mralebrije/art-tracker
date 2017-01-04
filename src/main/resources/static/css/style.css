@@ -32,8 +32,16 @@
     width: 50%;
     overflow: auo;
 }
+.organizationEmptySummaryContainer {
+    padding: 25px;
+    background-color: #E6E6FA !important;
+    float: left;
+    height: 100%;
+    width: 50%;
+    overflow: auo;
+}
 .organizationMapContainer {
-    background-color: #80E6E6FA !important;
+    background-color: #E6E6FA !important;
     float: right;
     height: 100%;
     width: 50%;

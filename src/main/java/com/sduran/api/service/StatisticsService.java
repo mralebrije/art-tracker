@@ -67,15 +67,15 @@ public class StatisticsService {
 
     private List<String> mergeZipCodesList(List<String> museumZipCodes, List<String> organizationsZipCodes) {
 
-        List<String> moZipCodes = museumZipCodes;
+        List<String> mergedZipCodesList = museumZipCodes;
 
         for (String zipCode : organizationsZipCodes) {
-            if (!moZipCodes.contains(zipCode)) {
-                moZipCodes.add(zipCode);
+            if (!mergedZipCodesList.contains(zipCode)) {
+                mergedZipCodesList.add(zipCode);
             }
         }
 
-        return moZipCodes;
+        return mergedZipCodesList;
     }
 
 
